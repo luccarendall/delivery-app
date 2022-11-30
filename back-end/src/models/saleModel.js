@@ -5,7 +5,6 @@ const getAllSales = async () => {
   return sales; 
 };
 
-
 const insertSale = async ({ id, products, totalPrice, deliveryAddress, deliveryNumber }) => {
   const result = await sequelize.transaction(async (t) => {
     const newSale = await Sale.create(

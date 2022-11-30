@@ -1,7 +1,7 @@
 const saleService = require('../services/saleService');
 const CustomError = require('../utils/CustomError');
 
-const getAllSales = async (_req, res) => {
+const getAllSales = async (_req, res, next) => {
   const { data, error, code } = await saleService.getAllSales();
 
   if (error) {
@@ -23,8 +23,7 @@ const insertSale = async (req, res, next) => {
     next(customError);
   } else {
     res.status(code).json(data);
-  };
-
+  }
 };
 
 module.exports = { getAllSales, insertSale };

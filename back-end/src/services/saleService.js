@@ -10,7 +10,7 @@ const getAllSales = async () => {
     };
   }
   return { code: 200, data: sales };
-}
+};
 
 const validateSaleRequest = (products, totalPrice, deliveryAddress, deliveryNumber) => {
   if (!products || !totalPrice || !deliveryAddress || !deliveryNumber) {
@@ -29,7 +29,7 @@ const insertSale = async (token, { products, totalPrice, deliveryAddress, delive
       error: { message: 'Invalid role' },
       code: 400,
     };
-  };
+  }
 
   const error = validateSaleRequest(products, totalPrice, deliveryAddress, deliveryNumber);
   if (error) return error;
