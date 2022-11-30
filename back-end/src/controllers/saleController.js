@@ -21,4 +21,14 @@ const insertSale = async (req, res, next) => {
   }
 };
 
-module.exports = { getAllSales, insertSale };
+const updateSaleStatus = async (req, res, next) => {
+  try {
+    const { query: { status }, params: { id } } = req;
+    const { data, code } = await saleService.updateSaleStatus(status, id);
+    return res.status(code).json(data);
+  } catch (error) {
+    next(error);
+  }
+};
+
+module.exports = { getAllSales, insertSale, updateSaleStatus };
