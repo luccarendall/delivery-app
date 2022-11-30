@@ -1,5 +1,10 @@
 const { SaleProduct, Sale, sequelize } = require('../database/models');
 
+const getAllSales = async () => {
+  const sales = await Sale.findAll();
+  return sales; 
+};
+
 const insertSale = async ({ id, products, totalPrice, deliveryAddress, deliveryNumber }) => {
   const result = await sequelize.transaction(async (t) => {
     const newSale = await Sale.create(
@@ -19,4 +24,4 @@ const insertSale = async ({ id, products, totalPrice, deliveryAddress, deliveryN
   return result;
 };
 
-module.exports = { insertSale };
+module.exports = { getAllSales, insertSale };
