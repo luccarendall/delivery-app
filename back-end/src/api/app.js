@@ -1,17 +1,16 @@
 const express = require('express');
-const saleRouter = require('../router/SaleRouter');
-const loginRouter = require('../router/loginRouter');
-const { errorMiddleware } = require('../middlewares/ErrorMiddleware');
+const registerRouter = require('../routes/registerRouter');
+const saleRouter = require('../routes/saleRouter');
+const loginRouter = require('../routes/loginRouter');
+const { ErrorMiddleware } = require('../middlewares/ErrorMiddleware');
 
 const app = express();
 
 app.use(express.json());
-
-app.get('/coffee', (_req, res) => res.status(418).end());
-
 app.use('/sales', saleRouter);
+app.use('/register', registerRouter);
 app.use('/login', loginRouter);
-
-app.use(errorMiddleware);
+app.get('/coffee', (_req, res) => res.status(418).end());
+app.use(ErrorMiddleware);
 
 module.exports = app;
