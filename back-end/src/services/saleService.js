@@ -33,4 +33,12 @@ const insertSale = async (token, { products, totalPrice, deliveryAddress, delive
   return { code: 200, data: newSale };
 };
 
-module.exports = { getAllSales, insertSale };
+const updateSaleStatus = async (status, id) => {
+  if (status === 'Preparando' || status === 'Em Trânsito' || status === 'Entregue') {
+    const sale = await saleModel.updateSaleStatus(status, id);
+    return { code: 200, data: sale };
+  }
+  throw new CustomError('Invalid request', 400); 
+};
+
+module.exports = { getAllSales, insertSale, updateSaleStatus };

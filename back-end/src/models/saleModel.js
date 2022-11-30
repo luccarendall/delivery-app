@@ -24,4 +24,13 @@ const insertSale = async ({ id, products, totalPrice, deliveryAddress, deliveryN
   return result;
 };
 
-module.exports = { getAllSales, insertSale };
+const updateSaleStatus = async (status, id) => {
+  await Sale.update(
+    { status },
+    { where: { id }, returning: true },
+  );
+  const result = await Sale.findOne({ where: { id } });
+  return result;
+};
+
+module.exports = { getAllSales, insertSale, updateSaleStatus };
