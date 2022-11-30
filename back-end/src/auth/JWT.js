@@ -1,22 +1,24 @@
-import jwt from 'jsonwebtoken';
-import secret from '../../jwt.evaluation.key';
+const jwt = require('jsonwebtoken');
+// const secret = require('../../jwt.evaluation.key');
 
-export const generateToken = (user) => {
+const generateToken = (user) => {
   const payload = {
     id: user.id,
     role: user.role,
   };
 
-  const token = jwt.sign(payload, secret);
+  const token = jwt.sign(payload, 'secret_key');
 
   return token;
 };
 
-export const authenticate = (token) => {
+const authenticate = (token) => {
   try {
-    const payload = jwt.verify(token, secret);
+    const payload = jwt.verify(token, 'secret_key');
     return payload;
   } catch (error) {
     return { status: 401, message: 'invalid token' };
   }
 };
+
+module.exports = { generateToken, authenticate };
