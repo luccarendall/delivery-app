@@ -14,23 +14,31 @@ const getAllSales = async () => {
 
 const validateSaleRequest = (products, totalPrice, deliveryAddress, deliveryNumber) => {
   if (!products || !totalPrice || !deliveryAddress || !deliveryNumber) {
-    return 'invalid Request';
+    return {
+      error: { message: 'Invalid fields' },
+      code: 400,
+    };
   }
   return null;
 };
 
 const insertSale = async (token, { products, totalPrice, deliveryAddress, deliveryNumber }) => {
   const { role, id } = authenticate(token);
-  if (role !== 'customer') throw new Error('invalid role');
+  if (role !== 'customer') {
+    return {
+      error: { message: 'Invalid role' },
+      code: 400,
+    };
+  };
 
   const error = validateSaleRequest(products, totalPrice, deliveryAddress, deliveryNumber);
-  if (error) throw new Error(error);
+  if (error) return error;
 
   const newSale = await saleModel.insertSale({
     id, products, totalPrice, deliveryAddress, deliveryNumber,
   });
 
-  return newSale;
+  return { code: 200, data: newSale };
 };
 
 module.exports = { getAllSales, insertSale };
