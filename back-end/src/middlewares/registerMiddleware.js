@@ -5,7 +5,7 @@ const registerMiddleware = async (req, _res, next) => {
   const { error } = registerSchema.validate(req.body);
 
   if (error) {
-    const customError = new CustomError(error.details[0].message, 400)
+    const customError = new CustomError(error.details[0].message, 400);
     next(customError);
   }
   next();
