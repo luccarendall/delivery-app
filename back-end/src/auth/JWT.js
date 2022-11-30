@@ -1,5 +1,6 @@
 const jwt = require('jsonwebtoken');
-import secret from '../../jwt.evaluation.key';
+// import secret from '../../jwt.evaluation.key';
+// const secret = require('../../jwt.evaluation.key');
 
 const generateToken = (user) => {
   const payload = {
