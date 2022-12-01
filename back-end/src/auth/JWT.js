@@ -19,7 +19,7 @@ const authenticate = (token) => {
     const payload = jwt.verify(token, 'secret_key');
     return payload;
   } catch (error) {
-    throw new CustomError('Invalid token', 401);;
+    throw new CustomError('Invalid token', 401);
   }
 };
 

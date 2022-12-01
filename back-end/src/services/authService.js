@@ -1,4 +1,5 @@
 const JWT = require('../auth/JWT');
+const CustomError = require('../utils/CustomError');
 
 const validateToken = (token) => {
   const payload = JWT.authenticate(token);
