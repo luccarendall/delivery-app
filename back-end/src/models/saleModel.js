@@ -1,7 +1,13 @@
-const { SaleProduct, Sale, sequelize } = require('../database/models');
+const { SaleProduct, Sale, Product, sequelize } = require('../database/models');
 
 const getAllSales = async () => {
-  const sales = await Sale.findAll();
+  const sales = await Sale.findAll({
+    include: [{
+      model: Product,
+      as: 'products',
+      through: { attributes: [] },
+    }],
+  });
   return sales; 
 };
 
