@@ -1,6 +1,5 @@
 const jwt = require('jsonwebtoken');
-// import secret from '../../jwt.evaluation.key';
-// const secret = require('../../jwt.evaluation.key');
+const CustomError = require('../utils/CustomError');
 
 const generateToken = (user) => {
   const payload = {
@@ -18,7 +17,7 @@ const authenticate = (token) => {
     const payload = jwt.verify(token, 'secret_key');
     return payload;
   } catch (error) {
-    return { code: 401, message: 'invalid token' };
+    throw new CustomError('Invalid token', 401);
   }
 };
 
