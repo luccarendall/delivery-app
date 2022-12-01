@@ -1,29 +1,34 @@
 const saleService = require('../services/saleService');
-const CustomError = require('../utils/CustomError');
 
 const getAllSales = async (_req, res, next) => {
-  const { data, error, code } = await saleService.getAllSales();
-
-  if (error) {
-    const customError = new CustomError(error.message, code);
-    next(customError);
-  } else {
-    res.status(code).json(data);
+  try {
+    const { data, code } = await saleService.getAllSales();
+    return res.status(code).json(data);
+  } catch (error) {
+    next(error);
   }
 };
 
 const insertSale = async (req, res, next) => {
-  const { authorization } = req.headers;
-  // const { products, totalPrice, deliveryAddress, deliveryNumber } = req.body;
-  const { data, error, code } = await saleService.insertSale(
+  try {
+    const { authorization } = req.headers;
+    const { data, code } = await saleService.insertSale(
     authorization, req.body,
   );
-  if (error) {
-    const customError = new CustomError(error.message, code);
-    next(customError);
-  } else {
-    res.status(code).json(data);
+  return res.status(code).json(data);
+  } catch (error) {
+    next(error);
   }
 };
 
-module.exports = { getAllSales, insertSale };
+const updateSaleStatus = async (req, res, next) => {
+  try {
+    const { query: { status }, params: { id } } = req;
+    const { data, code } = await saleService.updateSaleStatus(status, id);
+    return res.status(code).json(data);
+  } catch (error) {
+    next(error);
+  }
+};
+
+module.exports = { getAllSales, insertSale, updateSaleStatus };

@@ -18,7 +18,7 @@ const authenticate = (token) => {
     const payload = jwt.verify(token, 'secret_key');
     return payload;
   } catch (error) {
-    return { status: 401, message: 'invalid token' };
+    return { code: 401, message: 'invalid token' };
   }
 };
 
