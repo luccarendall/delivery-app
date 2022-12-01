@@ -1,5 +1,6 @@
 const express = require('express');
-const productRouter = require('../routes/productRouter');
+const cors = require('cors');
+const productsRouter = require('../routes/productRouter');
 const registerRouter = require('../routes/registerRouter');
 const saleRouter = require('../routes/saleRouter');
 const loginRouter = require('../routes/loginRouter');
@@ -9,6 +10,9 @@ const { ErrorMiddleware } = require('../middlewares/ErrorMiddleware');
 const app = express();
 
 app.use(express.json());
+app.use(cors({
+  origin: process.env.FRONTEND_URL || 'http://localhost:3000',
+}));
 
 app.use('/sales', saleRouter);
 app.use('/register', registerRouter);

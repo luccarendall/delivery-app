@@ -13,6 +13,8 @@ function App() {
           <Redirect from="/" to="/login" />
           <Route path="/login" component={ Login } />
           <Route path="/customer/products" />
+          <Route path="/register" />
+          <Redirect from="/" to="/login" />
         </Switch>
       </UserProvider>
     </div>
