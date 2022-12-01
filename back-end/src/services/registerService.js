@@ -19,6 +19,7 @@ const register = async (obj) => {
 const registerAdmin = async (obj, token) => {
   const { name, email, password } = obj;
   const { role } = JWT.authenticate(token);
+  console.log(role);
   if (role !== 'administrator') throw new CustomError('Unauthorized', 401);
   const user = await UserModel.find({ email });
   if (user) throw new CustomError('Conflict', 409);
