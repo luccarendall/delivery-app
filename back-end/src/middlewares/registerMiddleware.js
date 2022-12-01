@@ -21,4 +21,4 @@ const adminRegisterMiddleware = async (req, _res, next) => {
   next();
 };
 
-module.exports = { registerMiddleware, adminRegisterMiddleware};
+module.exports = { registerMiddleware, adminRegisterMiddleware };
