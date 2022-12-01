@@ -1,7 +1,5 @@
 const jwt = require('jsonwebtoken');
 const CustomError = require('../utils/CustomError');
-// import secret from '../../jwt.evaluation.key';
-// const secret = require('../../jwt.evaluation.key');
 
 const generateToken = (user) => {
   const payload = {

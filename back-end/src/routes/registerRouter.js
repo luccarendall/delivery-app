@@ -1,8 +1,8 @@
 const router = require('express').Router();
 const registerController = require('../controllers/registerController');
-const registerMiddleware = require('../middlewares/registerMiddleware');
+const { registerMiddleware, adminRegisterMiddleware } = require('../middlewares/registerMiddleware');
 
 router.post('/', registerMiddleware, registerController.register);
-router.post('/admin', registerMiddleware, registerController.registerAdmin);
+router.post('/admin', adminRegisterMiddleware, registerController.registerAdmin);
 
 module.exports = router;
