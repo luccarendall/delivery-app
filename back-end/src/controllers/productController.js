@@ -12,5 +12,4 @@ const getAllProducts = async (_req, res, next) => {
   }
 };
 
-
 module.exports = { getAllProducts };
