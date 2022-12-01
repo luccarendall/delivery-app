@@ -58,6 +58,7 @@ function Login() {
       setUser(data.user);
 
       if (data.user.role === 'customer') {
+        console.log('oi');
         history.push('/customer/products');
       }
 
@@ -115,6 +116,7 @@ function Login() {
         <button
           type="button"
           data-testid="common_login__button-register"
+          onClick={ () => history.push('/register') }
         >
           Registrar
         </button>
