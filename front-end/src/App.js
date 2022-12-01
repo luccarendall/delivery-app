@@ -9,8 +9,6 @@ function App() {
     <div>
       <UserProvider>
         <Switch>
-          {/* <Route path="/" render={ () => <Redirect to="/login" /> } /> */}
-          <Redirect from="/" to="/login" />
           <Route path="/login" component={ Login } />
           <Route path="/customer/products" />
           <Route path="/register" />
