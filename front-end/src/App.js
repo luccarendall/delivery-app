@@ -12,7 +12,7 @@ function App() {
           <Route path="/login" component={ Login } />
           <Route path="/customer/products" />
           <Route path="/register" />
-          <Route path="/" render={ () => (<Redirect to="/login" />) } />
+          <Redirect from="/" to="/login" />
         </Switch>
       </UserProvider>
     </div>
