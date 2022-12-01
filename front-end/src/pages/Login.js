@@ -2,7 +2,7 @@ import React from 'react';
 
 function Login() {
   return (
-    <p>Pagina de Login</p>
+    <h1>Pagina de Login</h1>
   );
 }
 export default Login;
