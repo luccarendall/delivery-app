@@ -9,40 +9,49 @@ function NavBar() {
     history.push(endpoint);
   };
 
-  const roleButton = {
-    administrator:
-  <button
-    data-testid="customer_products__element-navbar-link-orders"
-    type="button"
-    onClick={ () => goTo('/administrator/management') }
-  >
-    GERENCIAR USUÁRIOS
-  </button>,
-    seller:
-  <button
-    data-testid="customer_products__element-navbar-link-orders"
-    type="button"
-    onClick={ () => goTo('/seller/orders') }
-  >
-    PEDIDOS
-  </button>,
-    customer:
-  <span>
-    <button
-      data-testid="customer_products__element-navbar-link-products"
-      type="button"
-      onClick={ () => goTo('/customer/products') }
-    >
-      PRODUTOS
-    </button>
+  const buttonAdministrator = (
     <button
       data-testid="customer_products__element-navbar-link-orders"
       type="button"
-      onClick={ () => goTo('/customer/orders') }
+      onClick={ () => goTo('/administrator/management') }
     >
-      MEUS PEDIDOS
+      GERENCIAR USUÁRIOS
     </button>
-  </span>,
+  );
+
+  const buttonSeller = (
+    <button
+      data-testid="customer_products__element-navbar-link-orders"
+      type="button"
+      onClick={ () => goTo('/seller/orders') }
+    >
+      PEDIDOS
+    </button>
+  );
+
+  const buttonCustomer = (
+    <span>
+      <button
+        data-testid="customer_products__element-navbar-link-products"
+        type="button"
+        onClick={ () => goTo('/customer/products') }
+      >
+        PRODUTOS
+      </button>
+      <button
+        data-testid="customer_products__element-navbar-link-orders"
+        type="button"
+        onClick={ () => goTo('/customer/orders') }
+      >
+        MEUS PEDIDOS
+      </button>
+    </span>
+  );
+
+  const roleButton = {
+    administrator: buttonAdministrator,
+    seller: buttonSeller,
+    customer: buttonCustomer,
   };
 
   const logout = () => {
