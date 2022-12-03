@@ -1,10 +1,10 @@
 import NavBar from '../../components/NavBar';
 
-export default function Products() {
+export default function CustomerOrders() {
   return (
     <div>
       <NavBar />
-      <h1>PRODUTOS CUSTOMER</h1>
+      <h1>MEUS PEDIDOS CUSTOMER</h1>
     </div>
   );
 }

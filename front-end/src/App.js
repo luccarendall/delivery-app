@@ -4,8 +4,9 @@ import Login from './pages/Login';
 import './App.css';
 import { UserProvider } from './context/userContext';
 import Products from './pages/customer/Products';
-import Orders from './pages/seller/Orders.js';
+import SellerOrders from './pages/seller/SellerOrders.js';
 import Management from './pages/admin/Management';
+import CustomerOrders from './pages/customer/CustomerOrders';
 
 function App() {
   return (
@@ -13,8 +14,9 @@ function App() {
       <UserProvider>
         <Switch>
           <Route exact path="/login" component={ Login } />
-          <Route path="/customer/products" component={ Products } />
-          <Route path="/seller/orders" component={ Orders } />
+          <Route exact path="/customer/products" component={ Products } />
+          <Route exact path="/customer/orders" component={ CustomerOrders } />
+          <Route path="/seller/orders" component={ SellerOrders } />
           <Route path="/administrator/management" component={ Management } />
           <Route path="/register" />
           <Redirect from="/" to="/login" />
