@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom';
 import NavBar from '../../components/NavBar';
 import requestApi from '../../utils/RequestAPI';
 import OrderCard from '../../components/OrderCard/OrderCard';
-import useLocalStorage from '../../Hooks/useLocalStorage';
+import useLocalStorage from '../../hooks/useLocalStorage';
 
 export default function Orders() {
   const [orders, setOrders] = useState([]);

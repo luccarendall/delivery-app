@@ -1,9 +1,11 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
+import useLocalStorage from '../hooks/useLocalStorage';
 
 function NavBar() {
   const history = useHistory();
-  const { name, role } = JSON.parse(localStorage.getItem('user'));
+  const [user] = useLocalStorage('user', {});
+  const { name, role } = user;
 
   const goTo = (endpoint) => {
     history.push(endpoint);
