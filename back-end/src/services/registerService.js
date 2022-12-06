@@ -1,8 +1,8 @@
 const md5 = require('md5');
+const { Op } = require('sequelize');
 const JWT = require('../auth/JWT');
 const UserModel = require('../models/userModel');
 const CustomError = require('../utils/CustomError');
-const { Op } = require('sequelize');
 
 const register = async (obj) => {
   const { name, email, password } = obj;
