@@ -11,6 +11,12 @@ export default function CustomerOrders() {
   const history = useHistory();
 
   useEffect(() => {
+    if (user.role !== 'customer') {
+      history.goBack();
+    }
+  });
+
+  useEffect(() => {
     const getOrders = async () => {
       const { data } = await requestApi('GET', 'sales', {}, { authorization: token });
       if (data) setOrders(data);
@@ -21,12 +27,6 @@ export default function CustomerOrders() {
   const goTo = (endpoint) => {
     history.push(endpoint);
   };
-
-  useEffect(() => {
-    if (user.role !== 'customer') {
-      history.goBack();
-    }
-  });
 
   return (
     <div>
