@@ -8,8 +8,8 @@ function Login() {
   const [password, setPassword] = useState('');
   const [isDisabled, setIsDisabled] = useState(true);
   const [LoginSuccesfull, setLoginSuccesfull] = useState(true);
-  const [user, setUser] = useLocalStorage('user', {});
-  const [token, setToken] = useLocalStorage('token', '');
+  const setUser = useLocalStorage('user', {})[1];
+  const setToken = useLocalStorage('token', '')[1];
   const history = useHistory();
 
   useEffect(() => {
@@ -56,16 +56,15 @@ function Login() {
       setToken(data.token);
       setUser(data.user);
 
-      if (user.role === 'customer' && token) {
-        console.log('oi');
+      if (data.user.role === 'customer') {
         history.push('/customer/products');
       }
 
-      if (user.role === 'seller' && token) {
+      if (data.user.role === 'seller') {
         history.push('/seller/orders');
       }
 
-      if (user.role === 'administrator' && token) {
+      if (data.user.role === 'administrator') {
         history.push('/administrator/management');
       }
     }
