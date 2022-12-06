@@ -41,4 +41,21 @@ const updateSaleStatus = async (status, id) => {
   throw new CustomError('Invalid request', 400); 
 };
 
-module.exports = { getAllSales, insertSale, updateSaleStatus };
+const getSalesById = async (userId) => {
+  const sales = await Sale.findAll(
+    { 
+    where: { userId }, 
+    raw: true,
+    });
+  const saleData = sales.map(({ id, saleDate, totalPrice, status }) => (
+  {
+    id,
+    saleDate: saleDate.toLocaleDateString('pt-BR'), // https://stackoverflow.com/questions/27939773/tolocaledatestr
+    totalPrice,
+    status,
+  }));
+  if (!saleData || saleData.length === 0) throw new Error('Orders not found');
+  return saleData;
+}
+
+module.exports = { getAllSales, insertSale, updateSaleStatus, getSalesById };
