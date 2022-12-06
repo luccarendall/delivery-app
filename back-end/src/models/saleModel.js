@@ -39,4 +39,17 @@ const updateSaleStatus = async (status, id) => {
   return result;
 };
 
-module.exports = { getAllSales, insertSale, updateSaleStatus };
+const getSaleById = async ({ id }) => {
+  const data = await Sale.findOne({
+    include: [{
+      model: Product,
+      as: 'products',
+      through: { attributes: [] },
+    }],
+  where: { id }
+  });
+    if (!data) throw new Error('Sale not found')
+    return data;
+};
+
+module.exports = { getAllSales, insertSale, updateSaleStatus, getSaleById };
