@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import useLocalStorage from '../hooks/useLocalStorage';
 import { registerSchema } from '../schemas/registerSchema';
 import requestApi from '../utils/RequestAPI';
 
@@ -9,6 +10,8 @@ export default function Register() {
   const [password, setPassword] = useState('');
   const [isDisabled, setIsDisabled] = useState(true);
   const [badRegister, setBadRegister] = useState(false);
+  const setUser = useLocalStorage('user', {})[1];
+  const setToken = useLocalStorage('token', '')[1];
   const history = useHistory();
 
   useEffect(() => {
@@ -48,7 +51,12 @@ export default function Register() {
       password,
     });
 
-    if (status === successStatus) history.push('/customer/products');
+    if (status === successStatus) {
+      const { data } = await requestApi('POST', 'login', { email, password });
+      setUser(data.user);
+      setToken(data.token);
+      history.push('/customer/products');
+    }
     setBadRegister(true);
   };
 

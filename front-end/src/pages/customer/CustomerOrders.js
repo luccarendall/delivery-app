@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import useLocalStorage from '../../hooks/useLocalStorage';
-import NavBar from '../../components/NavBar';
+import NavBar from '../../components/NavBar/NavBar';
 import requestApi from '../../utils/RequestAPI';
 import OrderCard from '../../components/OrderCard/OrderCard';
 
