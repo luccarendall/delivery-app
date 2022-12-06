@@ -49,7 +49,7 @@ function OrderCard({
 OrderCard.propTypes = {
   id: propTypes.number.isRequired,
   status: propTypes.string.isRequired,
-  saleDate: propTypes.instanceOf(date).isRequired,
+  saleDate: propTypes.instanceOf(Date).isRequired,
   totalPrice: propTypes.number.isRequired,
   deliveryAddress: propTypes.string.isRequired,
   deliveryNumber: propTypes.string.isRequired,

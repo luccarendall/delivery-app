@@ -1,8 +1,9 @@
 const saleService = require('../services/saleService');
 
-const getAllSales = async (_req, res, next) => {
+const getAllSales = async (req, res, next) => {
   try {
-    const { data, code } = await saleService.getAllSales();
+    const { authorization } = req.headers;
+    const { data, code } = await saleService.getAllSales(authorization);
     return res.status(code).json(data);
   } catch (error) {
     next(error);

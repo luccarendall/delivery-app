@@ -4,7 +4,7 @@ import Login from './pages/Login';
 import './App.css';
 import { UserProvider } from './context/userContext';
 import Products from './pages/customer/Products';
-import SellerOrders from './pages/seller/SellerOrders.js';
+import SellerOrders from './pages/seller/SellerOrders';
 import Management from './pages/admin/Management';
 import CustomerOrders from './pages/customer/CustomerOrders';
 
