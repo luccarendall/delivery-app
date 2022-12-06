@@ -1,7 +1,6 @@
 const { authenticate } = require('../auth/JWT');
 const saleModel = require('../models/saleModel');
 const CustomError = require('../utils/CustomError');
-const Sale = require('../database/models/Sale');
 
 const getAllSales = async () => {
   const sales = await saleModel.getAllSales();
@@ -42,24 +41,32 @@ const updateSaleStatus = async (status, id) => {
   throw new CustomError('Invalid request', 400); 
 };
 
-const getSalesById = async (userId) => {
-  const sales = await Sale.findAll(
-    { 
-    where: { userId }, 
-    raw: true,
-    },
-    );
+// const getSalesById = async (userId) => {
+//   const sales = await Sale.findAll(
+//     { 
+//     where: { userId }, 
+//     raw: true,
+//     },
+//     );
 
-  const saleData = sales.map(({ id, saleDate, totalPrice, status }) => (
-  {
-    id,
-    saleDate: saleDate.toLocaleDateString('pt-BR'), // https://stackoverflow.com/questions/27939773/tolocaledatestr
-    totalPrice,
-    status,
-  }));
+//   const saleData = sales.map(({ id, saleDate, totalPrice, status }) => (
+//   {
+//     id,
+//     saleDate: saleDate.toLocaleDateString('pt-BR'), // https://stackoverflow.com/questions/27939773/tolocaledatestr
+//     totalPrice,
+//     status,
+//   }));
 
-  if (!saleData || saleData.length === 0) throw new Error('Orders not found');
-  return saleData;
+//   if (!saleData || saleData.length === 0) throw new Error('Orders not found');
+//   return saleData;
+// };
+
+const getSaleById = async (id) => {
+  const saleByid = await saleModel.getSalesById(id);
+  if (!saleByid) {
+    throw new CustomError('Sale id not found', 404);
+  }
+  return { code: 200, data: saleByid };
 };
 
-module.exports = { getAllSales, insertSale, updateSaleStatus, getSalesById };
+module.exports = { getAllSales, insertSale, updateSaleStatus, getSaleById };

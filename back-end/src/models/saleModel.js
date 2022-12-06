@@ -46,9 +46,9 @@ const getSaleById = async ({ id }) => {
       as: 'products',
       through: { attributes: [] },
     }],
-  where: { id }
+  where: { id },
   });
-    if (!data) throw new Error('Sale not found')
+    if (!data) throw new Error('Sale not found');
     return data;
 };
 
