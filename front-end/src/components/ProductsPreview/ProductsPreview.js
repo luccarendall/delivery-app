@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import userContext from '../../context/userContext';
 import cartContext from '../../context/cartContext';
 
-function SaleCard({ propsProducts }) {
+function ProductsPreview({ propsProducts }) {
   const { user } = useContext(userContext);
   const { removeProduct } = useContext(cartContext);
 
@@ -102,8 +102,8 @@ function SaleCard({ propsProducts }) {
   );
 }
 
-SaleCard.propTypes = {
+ProductsPreview.propTypes = {
   propsProducts: propTypes.arrayOf.isRequired,
 };
 
-export default SaleCard;
+export default ProductsPreview;
