@@ -1,10 +1,10 @@
 import React, { useContext } from 'react';
-import userContext from '../../context/userContext';
 import cartContext from '../../context/cartContext';
+import useLocalStorage from '../../hooks/useLocalStorage';
 
 function ProductsPreview({ propsProducts }) {
-  const { user } = useContext(userContext);
   const { removeProduct } = useContext(cartContext);
+  const [user] = useLocalStorage('user', {});
 
   const removeColumn = (
     <th>

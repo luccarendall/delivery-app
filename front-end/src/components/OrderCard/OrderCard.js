@@ -1,9 +1,10 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import propTypes from 'prop-types';
-import userContext from '../../context/userContext';
+import useLocalStorage from '../../hooks/useLocalStorage';
 
 function OrderCard({ order }) {
-  const { user } = useContext(userContext);
+  const [user] = useLocalStorage('user', {});
+
   const { id,
     status,
     saleDate,

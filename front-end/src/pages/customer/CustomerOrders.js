@@ -1,13 +1,14 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
+import useLocalStorage from '../../hooks/useLocalStorage';
 import NavBar from '../../components/NavBar';
 import requestApi from '../../utils/RequestAPI';
-import userContext from '../../context/userContext';
 import OrderCard from '../../components/OrderCard/OrderCard';
 
 export default function CustomerOrders() {
   const [orders, setOrders] = useState([]);
-  const { token, user } = useContext(userContext);
+  const [token] = useLocalStorage('token', '');
+  const [user] = useLocalStorage('user', {});
   const history = useHistory();
 
   useEffect(() => {
