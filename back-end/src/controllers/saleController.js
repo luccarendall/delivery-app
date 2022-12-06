@@ -31,7 +31,7 @@ const updateSaleStatus = async (req, res, next) => {
   }
 };
 
-const getSalesById = async (req, res) => {
+const getSalesById = async (req, res, next) => {
   try {
     const saleData = await getSalesById(req.params.id);
     return res.status(200).json(saleData);

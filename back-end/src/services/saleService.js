@@ -1,6 +1,7 @@
 const { authenticate } = require('../auth/JWT');
 const saleModel = require('../models/saleModel');
 const CustomError = require('../utils/CustomError');
+const Sale = require('../database/models/Sale');
 
 const getAllSales = async () => {
   const sales = await saleModel.getAllSales();
@@ -46,7 +47,9 @@ const getSalesById = async (userId) => {
     { 
     where: { userId }, 
     raw: true,
-    });
+    },
+    );
+
   const saleData = sales.map(({ id, saleDate, totalPrice, status }) => (
   {
     id,
@@ -54,8 +57,9 @@ const getSalesById = async (userId) => {
     totalPrice,
     status,
   }));
+
   if (!saleData || saleData.length === 0) throw new Error('Orders not found');
   return saleData;
-}
+};
 
 module.exports = { getAllSales, insertSale, updateSaleStatus, getSalesById };
