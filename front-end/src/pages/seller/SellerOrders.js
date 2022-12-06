@@ -20,7 +20,6 @@ export default function Orders() {
     const getOrders = async () => {
       const { data } = await requestApi('GET', 'sales', {}, { authorization: token });
       if (data) setOrders(data);
-      console.log(data);
     };
     getOrders();
   }, [token]);
