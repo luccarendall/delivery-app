@@ -1,4 +1,4 @@
-import React, { createContext, useEffect, useMemo, useState } from 'react';
+import React, { createContext, useEffect, useMemo, useState, useCallback } from 'react';
 import PropTypes from 'prop-types';
 
 const CartContext = createContext();
@@ -13,10 +13,16 @@ export function CartProvider({ children }) {
     setCart(JSON.parse(cartStorage));
   }, []);
 
+  const removeProduct = useCallback((product) => {
+    const newCart = cart.filter((item) => item !== product);
+    setCart(newCart);
+  }, [cart]);
+
   const contextValue = useMemo(() => ({
     cart,
     setCart,
-  }), [cart]);
+    removeProduct,
+  }), [cart, removeProduct]);
 
   return (
     <CartContext.Provider value={ contextValue }>

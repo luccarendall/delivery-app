@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
-import UserContext from '../context/userContext';
+import useLocalStorage from '../hooks/useLocalStorage';
 import requestApi from '../utils/RequestAPI';
 
 function Login() {
@@ -8,7 +8,8 @@ function Login() {
   const [password, setPassword] = useState('');
   const [isDisabled, setIsDisabled] = useState(true);
   const [LoginSuccesfull, setLoginSuccesfull] = useState(true);
-  const { setUser, setToken } = useContext(UserContext);
+  const [user, setUser] = useLocalStorage('user', {});
+  const [token, setToken] = useLocalStorage('token', '');
   const history = useHistory();
 
   useEffect(() => {
@@ -52,21 +53,19 @@ function Login() {
     }
 
     if (status === successStatus) {
-      localStorage.setItem('token', data.token);
       setToken(data.token);
-      localStorage.setItem('user', JSON.stringify(data.user));
       setUser(data.user);
 
-      if (data.user.role === 'customer') {
+      if (user.role === 'customer' && token) {
         console.log('oi');
         history.push('/customer/products');
       }
 
-      if (data.user.role === 'seller') {
+      if (user.role === 'seller' && token) {
         history.push('/seller/orders');
       }
 
-      if (data.user.role === 'administrator') {
+      if (user.role === 'administrator' && token) {
         history.push('/administrator/management');
       }
     }

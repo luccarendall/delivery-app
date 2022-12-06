@@ -1,7 +1,8 @@
 const { SaleProduct, Sale, Product, sequelize } = require('../database/models');
 
-const getAllSales = async () => {
+const getAllSales = async (role, id) => {
   const sales = await Sale.findAll({
+    where: role === 'customer' ? { userId: id } : { sellerId: id },
     include: [{
       model: Product,
       as: 'products',
@@ -15,7 +16,7 @@ const insertSale = async ({ id, products, totalPrice, deliveryAddress, deliveryN
   const result = await sequelize.transaction(async (t) => {
     const newSale = await Sale.create(
       { 
-        userId: id, sellerId: 1, totalPrice, deliveryAddress, deliveryNumber, saleDate: new Date(),
+        userId: id, sellerId: 2, totalPrice, deliveryAddress, deliveryNumber, saleDate: new Date(),
       },
       { transaction: t },
     );
@@ -39,4 +40,17 @@ const updateSaleStatus = async (status, id) => {
   return result;
 };
 
-module.exports = { getAllSales, insertSale, updateSaleStatus };
+const getSaleById = async ({ id }) => {
+  const data = await Sale.findOne({
+    include: [{
+      model: Product,
+      as: 'products',
+      through: { attributes: [] },
+    }],
+  where: { id },
+  });
+    if (!data) throw new Error('Sale not found');
+    return data;
+};
+
+module.exports = { getAllSales, insertSale, updateSaleStatus, getSaleById };
