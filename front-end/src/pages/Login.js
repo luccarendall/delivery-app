@@ -52,7 +52,7 @@ function Login() {
     }
 
     if (status === successStatus) {
-      localStorage.setItem('token', data.token);
+      localStorage.setItem('token', JSON.stringify(data.token));
       setToken(data.token);
       localStorage.setItem('user', JSON.stringify(data.user));
       setUser(data.user);

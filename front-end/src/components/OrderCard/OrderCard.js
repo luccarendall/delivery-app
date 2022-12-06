@@ -2,14 +2,16 @@ import React, { useContext } from 'react';
 import propTypes from 'prop-types';
 import userContext from '../../context/userContext';
 
-function OrderCard({
-  id,
-  status,
-  saleDate,
-  totalPrice,
-  deliveryAddress,
-  deliveryNumber }) {
+function OrderCard({ order }) {
   const { user } = useContext(userContext);
+  const { id,
+    status,
+    saleDate,
+    totalPrice,
+    deliveryAddress,
+    deliveryNumber } = order;
+
+  const dateObject = new Date(saleDate);
 
   const addressForDelivery = (
     <div className="order-delivery-address">
@@ -33,7 +35,9 @@ function OrderCard({
       </div>
       <div className="order-sale-date">
         <p data-testid={ `customer_orders__element-order-date-${id}` }>
-          { saleDate }
+          {
+            `${dateObject.getDay()}/${dateObject.getMonth()}/${dateObject.getFullYear()}`
+          }
         </p>
       </div>
       <div className="order-total-price">
@@ -47,12 +51,14 @@ function OrderCard({
 }
 
 OrderCard.propTypes = {
-  id: propTypes.number.isRequired,
-  status: propTypes.string.isRequired,
-  saleDate: propTypes.instanceOf(Date).isRequired,
-  totalPrice: propTypes.number.isRequired,
-  deliveryAddress: propTypes.string.isRequired,
-  deliveryNumber: propTypes.string.isRequired,
+  order: propTypes.shape({
+    id: propTypes.number,
+    status: propTypes.string,
+    saleDate: propTypes.string,
+    totalPrice: propTypes.string,
+    deliveryAddress: propTypes.string,
+    deliveryNumber: propTypes.string,
+  }).isRequired,
 };
 
 export default OrderCard;
