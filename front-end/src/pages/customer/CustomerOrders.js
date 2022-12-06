@@ -7,7 +7,7 @@ import OrderCard from '../../components/OrderCard/OrderCard';
 
 export default function CustomerOrders() {
   const [orders, setOrders] = useState([]);
-  const { token } = useContext(userContext);
+  const { token, user } = useContext(userContext);
   const history = useHistory();
 
   useEffect(() => {
@@ -21,6 +21,12 @@ export default function CustomerOrders() {
   const goTo = (endpoint) => {
     history.push(endpoint);
   };
+
+  useEffect(() => {
+    if (user.role !== 'customer') {
+      history.goBack();
+    }
+  });
 
   return (
     <div>

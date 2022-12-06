@@ -7,7 +7,7 @@ import Products from './pages/customer/Products';
 import SellerOrders from './pages/seller/SellerOrders.js';
 import Management from './pages/admin/Management';
 import CustomerOrders from './pages/customer/CustomerOrders';
-import CustomerOrderDetail from './pages/customer/CustomerOrderDatail';
+import CustomerOrderDetail from './pages/customer/CustomerOrderDetails';
 
 function App() {
   return (
