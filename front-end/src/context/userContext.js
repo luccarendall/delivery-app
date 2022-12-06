@@ -12,7 +12,7 @@ export function UserProvider({ children }) {
   useEffect(() => {
     const userStorage = localStorage.getItem('user') || JSON.stringify({});
     setUser(JSON.parse(userStorage));
-
+    console.log(userStorage, 'user context');
     const tokenStorage = localStorage.getItem('token') || '';
     setToken(tokenStorage);
   }, []);

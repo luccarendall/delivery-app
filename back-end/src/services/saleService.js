@@ -2,8 +2,9 @@ const { authenticate } = require('../auth/JWT');
 const saleModel = require('../models/saleModel');
 const CustomError = require('../utils/CustomError');
 
-const getAllSales = async () => {
-  const sales = await saleModel.getAllSales();
+const getAllSales = async (token) => {
+  const user = authenticate(token);
+  const sales = await saleModel.getAllSales(user.role, user.id);
   if (!sales || sales.length === 0) {
     throw new CustomError('Sales not found', 404);
   }
