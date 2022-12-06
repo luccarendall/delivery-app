@@ -6,6 +6,7 @@ import { UserProvider } from './context/userContext';
 import Products from './pages/customer/Products';
 import Orders from './pages/seller/Orders.js';
 import Management from './pages/admin/Management';
+import Register from './pages/Register';
 
 function App() {
   return (
@@ -16,7 +17,7 @@ function App() {
           <Route path="/customer/products" component={ Products } />
           <Route path="/seller/orders" component={ Orders } />
           <Route path="/administrator/management" component={ Management } />
-          <Route path="/register" />
+          <Route path="/register" component={ Register } />
           <Redirect from="/" to="/login" />
         </Switch>
       </UserProvider>

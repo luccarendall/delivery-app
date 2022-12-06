@@ -22,8 +22,6 @@ function NavBar() {
   </span>,
   };
 
-  console.log(role);
-
   return (
     <header>
       <nav>
