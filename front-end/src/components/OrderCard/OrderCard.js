@@ -1,7 +1,24 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import propTypes from 'prop-types';
+import userContext from '../../context/userContext';
 
-function OrderCard({ id, status, saleDate, totalPrice }) {
+function OrderCard({
+  id,
+  status,
+  saleDate,
+  totalPrice,
+  deliveryAddress,
+  deliveryNumber }) {
+  const { user } = useContext(userContext);
+
+  const addressForDelivery = (
+    <div className="order-delivery-address">
+      <p data-testid={ `seller_orders__element-card-address-${id}` }>
+        { `${deliveryAddress}, ${deliveryNumber}` }
+      </p>
+    </div>
+  );
+
   return (
     <section className="order-card">
       <div className="order-number">
@@ -24,6 +41,7 @@ function OrderCard({ id, status, saleDate, totalPrice }) {
           { `R$ ${totalPrice}` }
         </p>
       </div>
+      { user.role === 'seller' && addressForDelivery }
     </section>
   );
 }
@@ -33,6 +51,8 @@ OrderCard.propTypes = {
   status: propTypes.string.isRequired,
   saleDate: propTypes.instanceOf(date).isRequired,
   totalPrice: propTypes.number.isRequired,
+  deliveryAddress: propTypes.string.isRequired,
+  deliveryNumber: propTypes.string.isRequired,
 };
 
 export default OrderCard;
