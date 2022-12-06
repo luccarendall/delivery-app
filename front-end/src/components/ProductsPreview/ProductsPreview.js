@@ -12,7 +12,7 @@ function ProductsPreview({ propsProducts }) {
     </th>
   );
 
-  const removeButton = (
+  const removeButton = (product, index) => (
     <td>
       <button
         type="button"
@@ -84,7 +84,7 @@ function ProductsPreview({ propsProducts }) {
               >
                 { `R$ ${(product.qty * product.price).toFixed(2)}`}
               </td>
-              { user.role === 'customer' && removeButton }
+              { user.role === 'customer' && removeButton(product, index) }
             </tr>
           ))}
         </tbody>
