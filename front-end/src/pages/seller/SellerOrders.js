@@ -20,8 +20,10 @@ export default function Orders() {
 
   useEffect(() => {
     const getOrders = async () => {
-      const { data } = await requestApi('GET', 'sales', {}, { authorization: token });
-      if (data) setOrders(data);
+      const goodHttpResponse = 200;
+      const {
+        status, data } = await requestApi('GET', 'sales', {}, { authorization: token });
+      if (status === goodHttpResponse) setOrders(data);
     };
     getOrders();
   }, [token]);
@@ -34,7 +36,7 @@ export default function Orders() {
     <div>
       <NavBar />
       {
-        orders.map((order) => (
+        orders && orders.map((order) => (
           <button
             key={ order.id }
             type="button"

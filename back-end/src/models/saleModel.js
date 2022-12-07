@@ -40,16 +40,15 @@ const updateSaleStatus = async (status, id) => {
   return result;
 };
 
-const getSaleById = async ({ id }) => {
+const getSaleById = async (role, userId, id) => {
   const data = await Sale.findOne({
     include: [{
       model: Product,
       as: 'products',
-      through: { attributes: [] },
+      through: { attributes: ['quantity'] },
     }],
-  where: { id },
+  where: role === 'customer' ? { userId, id } : { sellerId: userId, id },
   });
-    if (!data) throw new Error('Sale not found');
     return data;
 };
 

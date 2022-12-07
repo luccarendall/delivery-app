@@ -41,10 +41,10 @@ const updateSaleStatus = async (req, res, next) => {
 //   }
 // };
 
-const getSaleById = async ({ req, res, next }) => {
+const getSaleById = async (req, res, next) => {
   try {
-    const { authorization } = req.headers;
-    const { data, code } = await saleService.getSaleById(authorization, req.body);
+    const { headers: { authorization }, params: { id } } = req;
+    const { data, code } = await saleService.getSaleById(authorization, id);
   return res.status(code).json(data);
   } catch (error) {
     next(error);
