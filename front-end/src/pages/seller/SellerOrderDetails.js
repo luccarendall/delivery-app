@@ -31,8 +31,6 @@ function SellerOrderDetails({ match: { params: { id } } }) {
     }));
   };
 
-  console.log(order);
-
   const date = new Date(order.saleDate);
 
   return (

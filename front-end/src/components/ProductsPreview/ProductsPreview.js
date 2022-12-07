@@ -1,13 +1,11 @@
 import React, { useContext } from 'react';
 import propTypes from 'prop-types';
+import { useHistory } from 'react-router-dom';
 import cartContext from '../../context/cartContext';
-import useLocalStorage from '../../hooks/useLocalStorage';
 
 function ProductsPreview({ propsProducts }) {
-  const contextValue = useContext(cartContext);
-  const [user] = useLocalStorage('user', {});
-
-  console.log(contextValue);
+  const { removeProduct } = useContext(cartContext);
+  const { location: { pathname } } = useHistory();
 
   const removeColumn = <th>Remover Item</th>;
 
@@ -16,7 +14,7 @@ function ProductsPreview({ propsProducts }) {
       <button
         type="button"
         data-testid={ `customer_checkout__element-order-table-remove-${index}` }
-        // onClick={ () => removeProduct(product) }
+        onClick={ () => removeProduct(product) }
       >
         Remover
       </button>
@@ -33,7 +31,7 @@ function ProductsPreview({ propsProducts }) {
             <th>Quantidade</th>
             <th>Valor Unitário</th>
             <th>Sub-total</th>
-            {user.role === 'customer' && removeColumn}
+            {pathname.includes('checkout') && removeColumn}
           </tr>
         </thead>
 
@@ -77,7 +75,7 @@ function ProductsPreview({ propsProducts }) {
                     * parseFloat(product.price)
                   ).toFixed(2)}`}
                 </td>
-                {user.role === 'customer' && removeButton(product, index)}
+                {pathname.includes('checkout') && removeButton(product, index)}
               </tr>
             ))}
         </tbody>
