@@ -1,11 +1,12 @@
 const md5 = require('md5');
+const { Op } = require('sequelize');
 const JWT = require('../auth/JWT');
 const UserModel = require('../models/userModel');
 const CustomError = require('../utils/CustomError');
 
 const register = async (obj) => {
   const { name, email, password } = obj;
-  const user = await UserModel.find({ email });
+  const user = await UserModel.find({ [Op.or]: [{ name }, { email }] });
   if (user) throw new CustomError('Conflict', 409);
   await UserModel.create({
     name,
@@ -22,7 +23,7 @@ const registerAdmin = async (obj, token) => {
   if (!roleList.includes(role)) throw new CustomError('Invalid role', 401);
   const payload = JWT.authenticate(token);
   if (payload.role !== 'administrator') throw new CustomError('Unauthorized', 401);
-  const user = await UserModel.find({ email });
+  const user = await UserModel.find({ [Op.or]: [{ name }, { email }] });
   if (user) throw new CustomError('Conflict', 409);
   await UserModel.create({
     name,
