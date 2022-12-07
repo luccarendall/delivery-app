@@ -12,7 +12,7 @@ function OrderCard({ order }) {
     deliveryAddress,
     deliveryNumber } = order;
 
-  const dateObject = new Date(saleDate);
+  const date = new Date(saleDate);
 
   const addressForDelivery = (
     <div className="order-delivery-address">
@@ -37,7 +37,7 @@ function OrderCard({ order }) {
       <div className="order-sale-date">
         <p data-testid={ `customer_orders__element-order-date-${id}` }>
           {
-            `${dateObject.getDay()}/${dateObject.getMonth()}/${dateObject.getFullYear()}`
+            `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`
           }
         </p>
       </div>

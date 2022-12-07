@@ -62,8 +62,9 @@ const updateSaleStatus = async (status, id) => {
 //   return saleData;
 // };
 
-const getSaleById = async (id) => {
-  const saleByid = await saleModel.getSalesById(id);
+const getSaleById = async (token, id) => {
+  const user = authenticate(token);
+  const saleByid = await saleModel.getSaleById(user.role, user.id, id);
   if (!saleByid) {
     throw new CustomError('Sale id not found', 404);
   }

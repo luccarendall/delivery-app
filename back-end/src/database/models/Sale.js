@@ -21,7 +21,7 @@ module.exports = (sequelize, DataTypes) => {
     saleDate: DataTypes.DATE,
     status: {
       type: DataTypes.STRING,
-      defaultValue: 'pendente'
+      defaultValue: 'Pendente'
     }
   },
   {
