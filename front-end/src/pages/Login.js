@@ -65,7 +65,7 @@ function Login() {
       }
 
       if (data.user.role === 'administrator') {
-        history.push('/administrator/management');
+        history.push('/admin/manage');
       }
     }
   };
