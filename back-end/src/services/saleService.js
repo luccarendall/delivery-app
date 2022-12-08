@@ -3,7 +3,7 @@ const saleModel = require('../models/saleModel');
 const CustomError = require('../utils/CustomError');
 
 const getAllSales = async (token) => {
-  const user = authenticate(token);
+  const user = await authenticate(token);
   const sales = await saleModel.getAllSales(user.role, user.id);
   if (!sales || sales.length === 0) {
     throw new CustomError('Sales not found', 404);
@@ -19,7 +19,7 @@ const validateSaleRequest = (products, totalPrice, deliveryAddress, deliveryNumb
 };
 
 const insertSale = async (token, { products, totalPrice, deliveryAddress, deliveryNumber }) => {
-  const { role, id } = authenticate(token);
+  const { role, id } = await authenticate(token);
   if (role !== 'customer') {
     throw new CustomError('Invalid Role', 401);
   }
@@ -63,7 +63,7 @@ const updateSaleStatus = async (status, id) => {
 // };
 
 const getSaleById = async (token, id) => {
-  const user = authenticate(token);
+  const user = await authenticate(token);
   const saleByid = await saleModel.getSaleById(user.role, user.id, id);
   if (!saleByid) {
     throw new CustomError('Sale id not found', 404);
