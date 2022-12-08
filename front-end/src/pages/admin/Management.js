@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import NavBar from '../../components/NavBar/NavBar';
+import useLocalStorage from '../../hooks/useLocalStorage';
 import requestApi from '../../utils/RequestAPI';
 
 function Management() {
@@ -9,6 +10,7 @@ function Management() {
   const [role, setRole] = useState('');
   const [isDisabled, setIsDisabled] = useState(true);
   const [badRegister, setBadRegister] = useState(false);
+  const [token] = useLocalStorage('token');
 
   useEffect(() => {
     const enabledButton = () => {
@@ -53,22 +55,23 @@ function Management() {
   const register = async () => {
     const successStatus = 201;
 
-    const { status } = await requestApi('POST', 'register/admin', {
+    const { status, data } = await requestApi('POST', 'register/admin', {
       name,
       email,
       password,
       role,
-    });
+    }, { authorization: token });
+    console.log(data);
 
     if (status === successStatus) {
-      const { data } = await requestApi('POST', 'login', {
-        email,
-        password,
-      });
-      setUser(data.user);
-      // setToken(data.token);
+      setName('');
+      setEmail('');
+      setPassword('');
+      setRole('customer');
+      setBadRegister(false);
+    } else {
+      setBadRegister(true);
     }
-    setBadRegister(true);
   };
 
   const invalidRegisterMessage = (
@@ -91,6 +94,7 @@ function Management() {
             id="name-input-admin-manage"
             type="name"
             placeholder="Nome e sobrenome"
+            value={ name }
           />
         </label>
         <label htmlFor="email-input-admin-manage">
@@ -101,6 +105,7 @@ function Management() {
             id="email-input-admin-manage"
             type="email"
             placeholder="seu-email@site.com.br"
+            value={ email }
           />
         </label>
         <label htmlFor="password-input-admin-manage">
@@ -111,6 +116,7 @@ function Management() {
             id="password-input-admin-manage"
             type="password"
             placeholder="**********"
+            value={ password }
           />
         </label>
         <label htmlFor="role-select-admin-manage">
@@ -119,8 +125,9 @@ function Management() {
             onChange={ handleRoleChange }
             data-testid="admin_manage__select-role"
             id="role-select-admin-manage"
+            value={ role }
           >
-            <option selected value="customer">Cliente</option>
+            <option defaultValue="customer" value="customer">Cliente</option>
             <option value="seller">Vendedor</option>
             <option value="administrator">Administrador</option>
           </select>
