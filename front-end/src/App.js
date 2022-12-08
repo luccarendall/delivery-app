@@ -14,19 +14,19 @@ import { CartProvider } from './context/cartContext';
 function App() {
   return (
     <div>
-      <Switch>
-        <Route exact path="/login" component={ Login } />
-        <CartProvider>
+      <CartProvider>
+        <Switch>
+          <Route exact path="/login" component={ Login } />
           <Route exact path="/customer/products" component={ Products } />
           <Route exact path="/customer/orders/:id" component={ CustomerOrderDetail } />
           <Route exact path="/customer/orders" component={ CustomerOrders } />
           <Route exact path="/seller/orders/:id" component={ SellerOrderDetails } />
           <Route exact path="/seller/orders" component={ SellerOrders } />
-        </CartProvider>
-        <Route exact path="/administrator/management" component={ Management } />
-        <Route exact path="/register" component={ Register } />
-        <Redirect from="/" to="/login" />
-      </Switch>
+          <Route exact path="/admin/manage" component={ Management } />
+          <Route exact path="/register" component={ Register } />
+          <Redirect from="/" to="/login" />
+        </Switch>
+      </CartProvider>
     </div>
   );
 }
