@@ -1,10 +1,11 @@
-const jwt = require('jsonwebtoken');
-const CustomError = require('../utils/CustomError');
 const fs = require('fs/promises');
+const jwt = require('jsonwebtoken');
+const path = require('path');
+const CustomError = require('../utils/CustomError');
 
-const filePath = __dirname + '/../../jwt.evaluation.key'; 
+const filePath = path.join(__dirname, '/../../jwt.evaluation.key'); 
 
-const getSecretKey = async () => await fs.readFile(filePath, { encoding: 'utf8' });
+const getSecretKey = async () => fs.readFile(filePath, { encoding: 'utf8' });
 
 const generateToken = async (user) => {
   const payload = {
