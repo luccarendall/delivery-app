@@ -19,8 +19,10 @@ export default function CustomerOrders() {
 
   useEffect(() => {
     const getOrders = async () => {
-      const { data } = await requestApi('GET', 'sales', {}, { authorization: token });
-      if (data) setOrders(data);
+      const goodHTTPResponse = 200;
+      const {
+        status, data } = await requestApi('GET', 'sales', {}, { authorization: token });
+      if (status === goodHTTPResponse) setOrders(data);
     };
     getOrders();
   }, [token]);
