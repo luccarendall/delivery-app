@@ -14,7 +14,7 @@ export default function Products() {
       }
     };
     getProducts();
-  });
+  }, []);
 
   return (
     <div>
