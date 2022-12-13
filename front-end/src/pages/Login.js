@@ -9,7 +9,6 @@ function Login() {
   const [isDisabled, setIsDisabled] = useState(true);
   const [LoginSuccesfull, setLoginSuccesfull] = useState(true);
   const setUser = useLocalStorage('user', {})[1];
-  const setToken = useLocalStorage('token', '')[1];
   const history = useHistory();
 
   useEffect(() => {
@@ -53,8 +52,10 @@ function Login() {
     }
 
     if (status === successStatus) {
-      setToken(data.token);
-      setUser(data.user);
+      setUser({
+        ...data.user,
+        token: data.token,
+      });
 
       if (data.user.role === 'customer') {
         history.push('/customer/products');

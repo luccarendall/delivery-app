@@ -41,12 +41,13 @@ export default function Products() {
         type="button"
         onClick={ () => goTo('/customer/checkout') }
         data-testid="customer_products__button-cart"
+        disabled={ cart.length === 0 }
       >
         Carrinho:
         <span
           data-testid="customer_products__checkout-bottom-value"
         >
-          { totalCart.toFixed(2) }
+          { totalCart.toFixed(2).replace('.', ',') }
         </span>
       </button>
     </div>

@@ -14,19 +14,19 @@ export function CartProvider({ children }) {
     setCart(newCart);
   }, [cart, setCart]);
 
-  const addToCart = useCallback(({ id, name, price, urlImage }) => {
+  const addToCart = useCallback(({ id, name, price, urlImage }, qty) => {
     setCart((oldCart) => [...oldCart, {
       id,
       name,
       price,
       urlImage,
-      qty: 1,
+      qty,
     }]);
   }, [setCart]);
 
   const updateCart = useCallback((type, product, value) => {
     const itemExist = cart.find((item) => item.id === product.id);
-    if (!itemExist) addToCart(product);
+    if (!itemExist) addToCart(product, parseInt(value, 10));
     else {
       setCart((oldCart) => oldCart.map((item) => {
         if (item.id === product.id) {

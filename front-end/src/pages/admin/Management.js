@@ -10,7 +10,7 @@ function Management() {
   const [role, setRole] = useState('');
   const [isDisabled, setIsDisabled] = useState(true);
   const [badRegister, setBadRegister] = useState(false);
-  const [token] = useLocalStorage('token');
+  const [user] = useLocalStorage('user');
 
   useEffect(() => {
     const enabledButton = () => {
@@ -55,13 +55,12 @@ function Management() {
   const register = async () => {
     const successStatus = 201;
 
-    const { status, data } = await requestApi('POST', 'register/admin', {
+    const { status } = await requestApi('POST', 'register/admin', {
       name,
       email,
       password,
       role,
-    }, { authorization: token });
-    console.log(data);
+    }, { authorization: user.token });
 
     if (status === successStatus) {
       setName('');

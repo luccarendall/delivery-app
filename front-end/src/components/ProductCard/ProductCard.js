@@ -25,7 +25,7 @@ function ProductCard({ product }) {
 
   const increment = () => {
     if (qty === 0) {
-      addToCart(product);
+      addToCart(product, 1);
     } else {
       updateCart('increment', product);
     }
@@ -41,7 +41,7 @@ function ProductCard({ product }) {
     <section className="product-card">
       <div className="product-price">
         <p data-testid={ `customer_products__element-card-price-${id}` }>
-          { `R$ ${price}` }
+          { price.toString().replace('.', ',') }
         </p>
       </div>
       <div className="product-image-container">

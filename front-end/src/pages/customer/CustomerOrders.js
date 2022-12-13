@@ -7,7 +7,6 @@ import OrderCard from '../../components/OrderCard/OrderCard';
 
 export default function CustomerOrders() {
   const [orders, setOrders] = useState([]);
-  const [token] = useLocalStorage('token', '');
   const [user] = useLocalStorage('user', {});
   const history = useHistory();
 
@@ -21,11 +20,12 @@ export default function CustomerOrders() {
     const getOrders = async () => {
       const goodHTTPResponse = 200;
       const {
-        status, data } = await requestApi('GET', 'sales', {}, { authorization: token });
+        status, data,
+      } = await requestApi('GET', 'sales', {}, { authorization: user.token });
       if (status === goodHTTPResponse) setOrders(data);
     };
     getOrders();
-  }, [token]);
+  }, [user.token]);
 
   const goTo = (endpoint) => {
     history.push(endpoint);
