@@ -10,6 +10,7 @@ import Register from './pages/Register';
 import CustomerOrders from './pages/customer/CustomerOrders';
 import CustomerOrderDetail from './pages/customer/CustomerOrderDetails';
 import { CartProvider } from './context/cartContext';
+import CustomerCheckout from './pages/customer/Checkout';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <Route exact path="/customer/products" component={ Products } />
           <Route exact path="/customer/orders/:id" component={ CustomerOrderDetail } />
           <Route exact path="/customer/orders" component={ CustomerOrders } />
+          <Route exact path="/customer/checkout" component={ CustomerCheckout } />
           <Route exact path="/seller/orders/:id" component={ SellerOrderDetails } />
           <Route exact path="/seller/orders" component={ SellerOrders } />
           <Route exact path="/admin/manage" component={ Management } />
