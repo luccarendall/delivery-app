@@ -10,6 +10,7 @@ import Register from './pages/Register';
 import CustomerOrders from './pages/customer/CustomerOrders';
 import CustomerOrderDetail from './pages/customer/CustomerOrderDetails';
 import { CartProvider } from './context/cartContext';
+import OrderDetails from './pages/orderDetails/orderDetails';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           <Route exact path="/customer/orders" component={ CustomerOrders } />
           <Route exact path="/seller/orders/:id" component={ SellerOrderDetails } />
           <Route exact path="/seller/orders" component={ SellerOrders } />
+          <Route exact path="/orderDetails/:id" component={ OrderDetails } />
         </CartProvider>
         <Route exact path="/administrator/management" component={ Management } />
         <Route exact path="/register" component={ Register } />

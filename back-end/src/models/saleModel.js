@@ -1,4 +1,4 @@
-const { SaleProduct, Sale, Product, sequelize } = require('../database/models');
+const { SaleProduct, Sale, Product, User, sequelize } = require('../database/models');
 
 const getAllSales = async (role, id) => {
   const sales = await Sale.findAll({
@@ -7,7 +7,8 @@ const getAllSales = async (role, id) => {
       model: Product,
       as: 'products',
       through: { attributes: [] },
-    }],
+    },
+  ],
   });
   return sales; 
 };
@@ -46,7 +47,13 @@ const getSaleById = async (role, userId, id) => {
       model: Product,
       as: 'products',
       through: { attributes: ['quantity'] },
-    }],
+    },
+    {
+      model: User,
+      as: 'seller',
+      //through: { attributes: [] },
+    }  
+  ],
   where: role === 'customer' ? { userId, id } : { sellerId: userId, id },
   });
     return data;
