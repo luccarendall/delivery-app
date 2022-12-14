@@ -14,7 +14,7 @@ function ProductsPreview({ propsProducts, propsPageName }) {
       <button
         type="button"
         data-testid={ `${propsPageName}__element-order-table-remove-${index}` }
-        onClick={ () => removeProduct(product) }
+        onClick={ () => removeProduct(product.id) }
       >
         Remover
       </button>
@@ -47,8 +47,7 @@ function ProductsPreview({ propsProducts, propsPageName }) {
                   {index + 1}
                 </td>
                 <td
-                  data-testid={ `${propsPageName}__element-order-table
-                  -name-${index}` }
+                  data-testid={ `${propsPageName}__element-order-table-name-${index}` }
                 >
                   {product.name}
                 </td>
@@ -65,7 +64,7 @@ function ProductsPreview({ propsProducts, propsPageName }) {
                     `${propsPageName}__element-order-table-unit-price-${index}`
                   }
                 >
-                  {`${product.price}`}
+                  {`${product.price.replace('.', ',')}`}
                 </td>
                 <td
                   data-testid={
