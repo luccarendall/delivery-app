@@ -1,17 +1,20 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import NavBar from '../../components/NavBar/NavBar';
 import ProductsPreview from '../../components/ProductsPreview/ProductsPreview';
 import useLocalStorage from '../../hooks/useLocalStorage';
 import requestApi from '../../utils/RequestAPI';
+import CartContext from '../../context/cartContext';
 
 export default function Checkout() {
   // const [orders, setOrders] = useState([]);
-  const [token] = useLocalStorage('token', '');
+  const { cart } = useContext(CartContext);
+  const [user] = useLocalStorage('user', '');
   const history = useHistory();
 
   const [deliveryAddress, setDeliveryAddress] = useState('');
   const [deliveryNumber, setDeliveryNumber] = useState('');
+  // const [cart, setCart] = useState('');
   const [sellers, setSellers] = useState([
     'Fulana Pereira',
     'Fulano Pereira',
@@ -19,33 +22,33 @@ export default function Checkout() {
   ]);
 
   useEffect(() => {
-    // buscar produtos do carrinho e usar essa informação na doneOrder
-    console.log('xablau');
+    if (cart.length === 0) {
+      history.push('/customer/products');
+    }
   });
 
   // puxar os produtos do carrinho e salvar nessa chave abaixo de forma dinâmica
-
   const doneOrder = async () => {
     const { data } = await requestApi(
       'POST',
       'sales',
       {
-        products: [{
-          id: 1,
-          quantity: 2,
-        }],
-        totalPrice: 100,
-        deliveryAddress: 'Acre',
-        deliveryNumber: '11',
+        products: cart.map((item) => ({
+          id: item.id,
+          quantity: item.qty,
+        })),
+        totalPrice: cart.reduce((acc, cur) => {
+          console.log(cur);
+          acc += parseFloat(cur.qty) * parseFloat(cur.price);
+          return acc;
+        }, 0),
+        deliveryAddress,
+        deliveryNumber,
       },
-      { authorization: token },
+      { authorization: user.token },
     );
-    console.log(data);
     history.push(`/customer/orders/${data.id}`);
   };
-
-  // Checkout page // Checkout page // Checkout page // Checkout page // Checkout page /\ /\ /\
-  // deliveryDetails // deliveryDetails // deliveryDetails // deliveryDetails // deliveryDetails \/ \/ \/
 
   const handlerAdress = (event) => {
     const { value } = event.target;
@@ -66,22 +69,6 @@ export default function Checkout() {
     console.log(`Pessoa vendedora selecionada é: ${target.value}`);
   };
 
-  // enviar esse data para o BD usando o metodo POST
-  // metodo requer: products, totalPrice, deliveryAddress, deliveryNumber,
-  const data = [deliveryAddress, deliveryNumber]; // products e totalPrice vem do ProductsPreview que não tô conseguindo acessar
-  console.log(data);
-
-  // const checkoutNewOrder = async () => {
-  //   const { deliveryData } = await requestApi('POST', 'checkout', {
-  //     products,
-  //     totalPrice,
-  //     deliveryAddress,
-  //     deliveryNumber,
-  //   });
-  // };
-
-  // deliveryDetails // deliveryDetails // deliveryDetails // deliveryDetails// deliveryDetails /\ /\ /\
-
   return (
     <>
       <NavBar />
@@ -89,13 +76,10 @@ export default function Checkout() {
         <div>
           <span>Finalizar Pedido</span>
           <ProductsPreview
-            propsProducts={ [{
-              id: 0,
-              name: 'teste',
-              SaleProduct: { quantity: 5 },
-              qty: 3,
-              price: 10,
-            }] }
+            propsProducts={ cart.map((product) => ({
+              ...product,
+              SaleProduct: { quantity: product.qty },
+            })) }
           />
         </div>
       </main>
@@ -129,7 +113,6 @@ export default function Checkout() {
               id="input-adress"
               placeholder="Travessa Terceira da Castellana, Bairro Muruci"
               data-testid="customer_checkout__input-address"
-              // value={ deliveryAddress }
               onChange={ handlerAdress }
             />
           </label>
@@ -137,11 +120,10 @@ export default function Checkout() {
           <label htmlFor="input-adress-number">
             Número
             <input
-              type="text"
+              type="number"
               id="input-adress-number"
               placeholder="198"
               data-testid="customer_checkout__input-address-number"
-              // value={ deliveryNumber }
               onChange={ handlerAdressNumber }
             />
           </label>
@@ -151,6 +133,7 @@ export default function Checkout() {
           type="button"
           data-testid="customer_checkout__button-submit-order"
           onClick={ () => doneOrder() }
+          disabled={ deliveryAddress.length === 0 || deliveryNumber.length === 0 }
         >
           Finalizar pedido
         </button>

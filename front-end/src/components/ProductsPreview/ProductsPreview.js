@@ -14,7 +14,7 @@ function ProductsPreview({ propsProducts }) {
       <button
         type="button"
         data-testid={ `customer_checkout__element-order-table-remove-${index}` }
-        onClick={ () => removeProduct(product) }
+        onClick={ () => removeProduct(product.id) }
       >
         Remover
       </button>
@@ -56,24 +56,24 @@ function ProductsPreview({ propsProducts }) {
                     `customer_checkout__element-order-table-quantity-${index}`
                   }
                 >
-                  {product.qty}
+                  {product.SaleProduct.quantity}
                 </td>
                 <td
                   data-testid={
                     `customer_checkout__element-order-table-unit-price-${index}`
                   }
                 >
-                  {`R$ ${product.price}`}
+                  {`${product.price.replace('.', ',')}`}
                 </td>
                 <td
                   data-testid={
                     `customer_checkout__element-order-table-sub-total-${index}`
                   }
                 >
-                  {`R$ ${(
+                  {`${(
                     parseFloat(product.SaleProduct.quantity)
                     * parseFloat(product.price)
-                  ).toFixed(2)}`}
+                  ).toFixed(2).replace('.', ',')}`}
                 </td>
                 {pathname.includes('checkout') && removeButton(product, index)}
               </tr>
@@ -83,12 +83,12 @@ function ProductsPreview({ propsProducts }) {
 
       <div className="sale-card-total-price">
         <p data-testid="customer_checkout__element-order-total-price">
-          {`Total: R$ ${propsProducts
+          {`${propsProducts
             .reduce((acc, cur) => {
               acc += parseFloat(cur.SaleProduct.quantity) * parseFloat(cur.price);
               return acc;
             }, 0)
-            .toFixed(2)}`}
+            .toFixed(2).replace('.', ',')}`}
         </p>
       </div>
     </section>

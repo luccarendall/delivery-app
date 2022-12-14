@@ -31,7 +31,7 @@ const insertSale = async (token, { products, totalPrice, deliveryAddress, delive
     id, products, totalPrice, deliveryAddress, deliveryNumber,
   });
 
-  return { code: 200, data: newSale };
+  return { code: 201, data: newSale };
 };
 
 const updateSaleStatus = async (status, id) => {
