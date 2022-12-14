@@ -1,8 +1,12 @@
 import React from 'react';
+import NavBar from '../../components/NavBar/NavBar';
 
 function CustomerOrderDetail() {
   return (
-    <p>PAGINA DE DETALHES DE PEDIDO</p>
+    <div>
+      <NavBar />
+      <p>PAGINA DE DETALHES DE PEDIDO</p>
+    </div>
   );
 }
 
