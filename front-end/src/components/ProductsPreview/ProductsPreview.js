@@ -3,7 +3,7 @@ import propTypes from 'prop-types';
 import { useHistory } from 'react-router-dom';
 import cartContext from '../../context/cartContext';
 
-function ProductsPreview({ propsProducts }) {
+function ProductsPreview({ propsProducts, propsPageName }) {
   const { removeProduct } = useContext(cartContext);
   const { location: { pathname } } = useHistory();
 
@@ -13,7 +13,7 @@ function ProductsPreview({ propsProducts }) {
     <td>
       <button
         type="button"
-        data-testid={ `customer_checkout__element-order-table-remove-${index}` }
+        data-testid={ `${propsPageName}__element-order-table-remove-${index}` }
         onClick={ () => removeProduct(product) }
       >
         Remover
@@ -30,7 +30,7 @@ function ProductsPreview({ propsProducts }) {
             <th>Descricão</th>
             <th>Quantidade</th>
             <th>Valor Unitário</th>
-            <th>Sub-total</th>
+            <th>Sub-Total</th>
             {pathname.includes('checkout') && removeColumn}
           </tr>
         </thead>
@@ -41,39 +41,41 @@ function ProductsPreview({ propsProducts }) {
               <tr key={ product.id }>
                 <td
                   data-testid={
-                    `customer_checkout__element-order-table-item-number-${index}`
+                    `${propsPageName}__element-order-table-item-number-${index}`
                   }
                 >
                   {index + 1}
                 </td>
                 <td
-                  data-testid={ `customer_checkout__element-order-table-name-${index}` }
+                  data-testid={ `${propsPageName}__element-order-table
+                  -name-${index}` }
                 >
                   {product.name}
                 </td>
                 <td
+                  style={ { display: 'flex', justifyContent: 'center' } }
                   data-testid={
-                    `customer_checkout__element-order-table-quantity-${index}`
+                    `${propsPageName}__element-order-table-quantity-${index}`
                   }
                 >
-                  {product.qty}
+                  {product.SaleProduct.quantity}
                 </td>
                 <td
                   data-testid={
-                    `customer_checkout__element-order-table-unit-price-${index}`
+                    `${propsPageName}__element-order-table-unit-price-${index}`
                   }
                 >
-                  {`R$ ${product.price}`}
+                  {`${product.price}`}
                 </td>
                 <td
                   data-testid={
-                    `customer_checkout__element-order-table-sub-total-${index}`
+                    `${propsPageName}__element-order-table-sub-total-${index}`
                   }
                 >
-                  {`R$ ${(
+                  {`${(
                     parseFloat(product.SaleProduct.quantity)
                     * parseFloat(product.price)
-                  ).toFixed(2)}`}
+                  ).toFixed(2).replace('.', ',')}`}
                 </td>
                 {pathname.includes('checkout') && removeButton(product, index)}
               </tr>
@@ -82,13 +84,13 @@ function ProductsPreview({ propsProducts }) {
       </table>
 
       <div className="sale-card-total-price">
-        <p data-testid="customer_checkout__element-order-total-price">
-          {`Total: R$ ${propsProducts
+        <p data-testid={ `${propsPageName}__element-order-total-price` }>
+          {`${propsProducts
             .reduce((acc, cur) => {
               acc += parseFloat(cur.SaleProduct.quantity) * parseFloat(cur.price);
               return acc;
             }, 0)
-            .toFixed(2)}`}
+            .toFixed(2).replace('.', ',')}`}
         </p>
       </div>
     </section>
@@ -97,6 +99,7 @@ function ProductsPreview({ propsProducts }) {
 
 ProductsPreview.propTypes = {
   propsProducts: propTypes.arrayOf(propTypes.shape()).isRequired,
+  propsPageName: propTypes.string.isRequired,
 };
 
 export default ProductsPreview;

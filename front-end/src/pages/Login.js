@@ -10,6 +10,27 @@ function Login() {
   const [LoginSuccesfull, setLoginSuccesfull] = useState(true);
   const setUser = useLocalStorage('user', {})[1];
   const history = useHistory();
+  const [user] = useLocalStorage('user', '');
+
+  useEffect(() => {
+    const duzentos = 200;
+    const verifyToken = async () => {
+      const { data, status } = await requestApi(
+        'POST',
+        'validate',
+        {},
+        { authorization: user.token },
+      );
+
+      const role = {
+        customer: '/customer/products',
+        seller: '/seller/orders',
+        administrator: '/admin/manage',
+      };
+      if (status === duzentos) { history.push(role[data.message.role]); }
+    };
+    verifyToken();
+  }, [history, user.token]);
 
   useEffect(() => {
     const enabledButton = () => {
