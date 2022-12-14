@@ -5,9 +5,9 @@ const CustomError = require('../utils/CustomError');
 const getAllSales = async (token) => {
   const user = await authenticate(token);
   const sales = await saleModel.getAllSales(user.role, user.id);
-  if (!sales) {
-    throw new CustomError('Sales not found', 404);
-  }
+  // if (!sales) {
+  //   throw new CustomError('Sales not found', 404);
+  // }
   return { code: 200, data: sales };
 };
 
