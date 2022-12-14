@@ -70,7 +70,10 @@ function SellerOrderDetails({ match: { params: { id } } }) {
           Saiu para entrega
         </button>
       </div>
-      { order.products && <ProductsPreview propsProducts={ order.products } />}
+      { order.products && <ProductsPreview
+        propsPageName="seller_order_details"
+        propsProducts={ order.products }
+      />}
     </div>
   );
 }

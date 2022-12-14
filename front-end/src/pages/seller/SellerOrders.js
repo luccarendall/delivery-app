@@ -42,7 +42,10 @@ export default function Orders() {
             type="button"
             onClick={ () => goTo(`/seller/orders/${order.id}`) }
           >
-            <OrderCard order={ order } />
+            <OrderCard
+              propsPageName="seller_orders"
+              order={ order }
+            />
           </button>
         ))
       }

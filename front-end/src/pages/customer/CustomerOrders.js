@@ -41,7 +41,10 @@ export default function CustomerOrders() {
             type="button"
             onClick={ () => goTo(`/customer/orders/${order.id}`) }
           >
-            <OrderCard order={ order } />
+            <OrderCard
+              propsPageName="customer_orders"
+              order={ order }
+            />
           </button>
         ))
       }

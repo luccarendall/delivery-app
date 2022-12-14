@@ -76,6 +76,7 @@ export default function Checkout() {
         <div>
           <span>Finalizar Pedido</span>
           <ProductsPreview
+            propsPageName="customer_checkout"
             propsProducts={ cart.map((product) => ({
               ...product,
               SaleProduct: { quantity: product.qty },
