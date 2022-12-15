@@ -137,6 +137,7 @@ function Login() {
           type="button"
           data-testid="common_login__button-register"
           onClick={ () => history.push('/register') }
+          className="font-bold text-yellow"
         >
           Registrar
         </button>
