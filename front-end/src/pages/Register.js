@@ -64,13 +64,18 @@ export default function Register() {
   const invalidRegisterMessage = (
     <span
       data-testid="common_register__element-invalid_register"
+      className="text-red-500 font-bold mt-4"
     >
       Dados inválidos
     </span>);
 
   return (
-    <div>
-      <form>
+    <div className="flex flex-col items-center mt-44">
+      <h3 className="text-2xl mb-4">Cadastro</h3>
+      <form
+        className={ `flex flex-col items-center bg-yellow w-min p-4 rounded-sm
+        shadow-lg` }
+      >
         <label htmlFor="name-input-register">
           Nome
           <input
@@ -78,27 +83,30 @@ export default function Register() {
             data-testid="common_register__input-name"
             id="name-input-register"
             type="name"
-            placeholder="Nome"
+            placeholder="Seu Nome"
+            className="flex flex-col rounded p-2 border border-grey"
           />
         </label>
-        <label htmlFor="email-input-register">
+        <label htmlFor="email-input-register" className="pt-2">
           Email
           <input
             onChange={ handleEmailChange }
             data-testid="common_register__input-email"
             id="email-input-register"
             type="email"
-            placeholder="Email"
+            placeholder="seu-email@site.com.br"
+            className="flex flex-col rounded p-2 border border-grey"
           />
         </label>
-        <label htmlFor="password-input-register">
+        <label htmlFor="password-input-register" className="pt-2">
           Senha
           <input
             onChange={ handlePasswordChange }
             data-testid="common_register__input-password"
             id="password-input-register"
             type="password"
-            placeholder="Senha"
+            placeholder="***********"
+            className="flex flex-col rounded p-2 border border-grey"
           />
         </label>
         <button
@@ -106,18 +114,12 @@ export default function Register() {
           type="button"
           data-testid="common_register__button-register"
           disabled={ isDisabled }
+          className="mt-4 w-full rounded p-2 bg-black text-white disabled:bg-grey"
         >
-          Cadastrar
+          CADASTRAR
         </button>
-        { badRegister && invalidRegisterMessage }
-        {/* <button
-          type="button"
-          data-testid="common_login__button-register"
-          onClick={ () => history.push('/register') }
-        >
-          Registrar
-        </button> */}
       </form>
+      { badRegister && invalidRegisterMessage }
     </div>
   );
 }
