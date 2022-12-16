@@ -118,6 +118,14 @@ export default function Register() {
         >
           CADASTRAR
         </button>
+        <button
+          onClick={ () => history.push('/login') }
+          type="button"
+          data-testid="common_register__button-register"
+          className="mt-4 w-full rounded p-2 bg-black text-white"
+        >
+          VOLTAR
+        </button>
       </form>
       { badRegister && invalidRegisterMessage }
     </div>
