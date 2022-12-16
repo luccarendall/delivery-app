@@ -3,6 +3,8 @@ import { useHistory } from 'react-router-dom';
 import useLocalStorage from '../hooks/useLocalStorage';
 import { registerSchema } from '../schemas/registerSchema';
 import requestApi from '../utils/RequestAPI';
+import rock from '../images/rockGlass.svg';
+import userIcon from '../images/user-icon.png';
 
 export default function Register() {
   const [name, setName] = useState('');
@@ -70,64 +72,78 @@ export default function Register() {
     </span>);
 
   return (
-    <div className="flex flex-col items-center mt-44">
-      <h3 className="text-2xl mb-4">Cadastro</h3>
-      <form
-        className={ `flex flex-col items-center bg-yellow w-min p-4 rounded-sm
-        shadow-lg` }
+    <div className="flex justify-center items-center mt-44">
+      <div className="mr-14">
+        <img alt="Imagem ilustrativa" src={ rock } />
+      </div>
+      <div
+        className="flex flex-col items-center pl-14 border-l border-grey w-min
+        "
       >
-        <label htmlFor="name-input-register">
-          Nome
-          <input
-            onChange={ handleNameChange }
-            data-testid="common_register__input-name"
-            id="name-input-register"
-            type="name"
-            placeholder="Seu Nome"
-            className="flex flex-col rounded p-2 border border-grey"
-          />
-        </label>
-        <label htmlFor="email-input-register" className="pt-2">
-          Email
-          <input
-            onChange={ handleEmailChange }
-            data-testid="common_register__input-email"
-            id="email-input-register"
-            type="email"
-            placeholder="seu-email@site.com.br"
-            className="flex flex-col rounded p-2 border border-grey"
-          />
-        </label>
-        <label htmlFor="password-input-register" className="pt-2">
-          Senha
-          <input
-            onChange={ handlePasswordChange }
-            data-testid="common_register__input-password"
-            id="password-input-register"
-            type="password"
-            placeholder="***********"
-            className="flex flex-col rounded p-2 border border-grey"
-          />
-        </label>
-        <button
-          onClick={ register }
-          type="button"
-          data-testid="common_register__button-register"
-          disabled={ isDisabled }
-          className="mt-4 w-full rounded p-2 bg-black text-white disabled:bg-grey"
+        <img alt="Icone perfil" src={ userIcon } className="pb-6" />
+        <h3 className="text-2xl mb-4">Cadastro</h3>
+        <form
+          className="flex flex-col items-center w-min p-4"
         >
-          CADASTRAR
-        </button>
-        <button
-          onClick={ () => history.push('/login') }
-          type="button"
-          data-testid="common_register__button-register"
-          className="mt-4 w-full rounded p-2 bg-black text-white"
-        >
-          VOLTAR
-        </button>
-      </form>
-      { badRegister && invalidRegisterMessage }
+          <label htmlFor="name-input-register">
+            Nome
+            <input
+              onChange={ handleNameChange }
+              data-testid="common_register__input-name"
+              id="name-input-register"
+              type="name"
+              placeholder="Seu Nome"
+              className="p-2 border-b border-grey focus:outline-none focus:border-yellow
+              focus:border-b-2"
+            />
+          </label>
+          <label htmlFor="email-input-register" className="mt-10">
+            Email
+            <input
+              onChange={ handleEmailChange }
+              data-testid="common_register__input-email"
+              id="email-input-register"
+              type="email"
+              placeholder="seu-email@site.com.br"
+              className="p-2 border-b border-grey focus:outline-none focus:border-yellow
+              focus:border-b-2"
+            />
+          </label>
+          <label htmlFor="password-input-register" className="mt-10">
+            Senha
+            <input
+              onChange={ handlePasswordChange }
+              data-testid="common_register__input-password"
+              id="password-input-register"
+              type="password"
+              placeholder="***********"
+              className="p-2 border-b border-grey focus:outline-none focus:border-yellow
+              focus:border-b-2"
+            />
+          </label>
+          <div className="flex justify-around w-full">
+            <button
+              onClick={ register }
+              type="button"
+              data-testid="common_register__button-register"
+              disabled={ isDisabled }
+              className="mt-4 h-min rounded-sm p-2 bg-yellow text-black text-xs font-bold
+              disabled:bg-grey disabled:text-white"
+            >
+              CADASTRAR
+            </button>
+            <button
+              onClick={ () => history.push('/login') }
+              type="button"
+              data-testid="common_register__button-register"
+              className="mt-4 h-min rounded-sm p-2 text-xs font-bold bg-black text-white"
+            >
+              VOLTAR
+            </button>
+          </div>
+        </form>
+        { badRegister && invalidRegisterMessage }
+      </div>
     </div>
   );
 }
