@@ -73,17 +73,16 @@ export default function Register() {
 
   return (
     <div className="flex justify-center items-center mt-44">
-      <div className="mr-14">
+      <div className="mr-14 animate-slide-to-right">
         <img alt="Imagem ilustrativa" src={ rock } />
       </div>
       <div
-        className="flex flex-col items-center pl-14 border-l border-grey w-min
-        "
+        className="flex flex-col items-center pl-14 border-l border-grey w-min"
       >
-        <img alt="Icone perfil" src={ userIcon } className="pb-6" />
-        <h3 className="text-2xl mb-4">Cadastro</h3>
+        <img alt="Icone perfil" src={ userIcon } className="pb-6 animate-slide-to-left" />
+        <h3 className="text-2xl mb-4 animate-slide-to-left">Cadastro</h3>
         <form
-          className="flex flex-col items-center w-min p-4"
+          className="flex flex-col items-center w-min p-4 animate-slide-to-left"
         >
           <label htmlFor="name-input-register">
             Nome
