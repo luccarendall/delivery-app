@@ -66,24 +66,20 @@ export default function Register() {
   const invalidRegisterMessage = (
     <span
       data-testid="common_register__element-invalid_register"
-      className="text-red-500 font-bold mt-4"
+      className="text-red-500 font-bold absolute translate-y-[525px]"
     >
       Dados inválidos
     </span>);
 
   return (
-    <div className="flex justify-center items-center mt-44">
+    <div className="flex justify-center items-center my-44">
       <div className="mr-14 animate-slide-to-right">
         <img alt="Imagem ilustrativa" src={ rock } />
       </div>
-      <div
-        className="flex flex-col items-center pl-14 border-l border-grey w-min"
-      >
+      <div className="flex flex-col items-center pl-14 border-l border-grey w-min">
         <img alt="Icone perfil" src={ userIcon } className="pb-6 animate-slide-to-left" />
         <h3 className="text-2xl mb-4 animate-slide-to-left">Cadastro</h3>
-        <form
-          className="flex flex-col items-center w-min p-4 animate-slide-to-left"
-        >
+        <form className="flex flex-col items-center w-min p-4 animate-slide-to-left">
           <label htmlFor="name-input-register">
             Nome
             <input

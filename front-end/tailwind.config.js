@@ -21,6 +21,9 @@ module.exports = {
         'slide-to-left': 'slide-to-left 1s linear',
         'slide-to-right': 'slide-to-right 1s linear',
       },
+      translate: {
+        '525px': '525px',
+      },
     },
   },
   plugins: [],
