@@ -30,16 +30,19 @@ export default function Register() {
 
   const handleNameChange = (event) => {
     const { value } = event.target;
+    setBadRegister(false);
     setName(value);
   };
 
   const handleEmailChange = (event) => {
     const { value } = event.target;
+    setBadRegister(false);
     setEmail(value);
   };
 
   const handlePasswordChange = (event) => {
     const { value } = event.target;
+    setBadRegister(false);
     setPassword(value);
   };
 
