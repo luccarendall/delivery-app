@@ -70,7 +70,7 @@ function NavBar() {
   };
 
   return (
-    <header className="drop-shadow-md border-0 bg-grey">
+    <header className="drop-shadow-md border-0 bg-grey mb-12">
       <nav className="flex items-center h-14 justify-between bg-white">
         <div className="flex items-center">
           <img src={ rock } alt="Icone do e-commerce" className="w-10 inline mx-3" />
