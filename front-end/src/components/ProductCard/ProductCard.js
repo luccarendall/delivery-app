@@ -39,17 +39,17 @@ function ProductCard({ product }) {
 
   return (
     <section
-      className="flex flex-col w-60 h-96 items-center rounded-lg m-8
+      className="flex flex-col w-60 h-80 items-center rounded-lg m-8
       justify-between"
     >
       <div
         className="flex flex-col items-center rounded-t-lg w-full h-full
         border-white border-x-2 border-t-2"
       >
-        <div className="w-full mt-3 z-10">
+        <div className="w-full mt-3">
           <div
             className="text-white bg-black w-max p-1 px-4 font-bold rounded-r
-            drop-shadow-xl"
+            drop-shadow-xl absolute z-10"
           >
             <span>R$ </span>
             <span data-testid={ `customer_products__element-card-price-${id}` }>
