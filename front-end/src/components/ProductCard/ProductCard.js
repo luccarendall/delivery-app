@@ -40,7 +40,7 @@ function ProductCard({ product }) {
   return (
     <section
       className="flex flex-col w-60 h-80 items-center rounded-lg m-8
-      justify-between"
+      justify-between bg-trueWhite"
     >
       <div
         className="flex flex-col items-center rounded-t-lg w-full h-full
