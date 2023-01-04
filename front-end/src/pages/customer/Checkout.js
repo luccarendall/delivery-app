@@ -8,7 +8,7 @@ import CartContext from '../../context/cartContext';
 
 export default function Checkout() {
   // const [orders, setOrders] = useState([]);
-  const { cart } = useContext(CartContext);
+  const { cart, setCart } = useContext(CartContext);
   const [user] = useLocalStorage('user', '');
   const history = useHistory();
 
@@ -47,6 +47,7 @@ export default function Checkout() {
       },
       { authorization: user.token },
     );
+    setCart([]);
     history.push(`/customer/orders/${data.id}`);
   };
 
