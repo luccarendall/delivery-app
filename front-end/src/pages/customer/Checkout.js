@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import NavBar from '../../components/NavBar/NavBar';
 import ProductsPreview from '../../components/ProductsPreview/ProductsPreview';
@@ -21,11 +21,11 @@ export default function Checkout() {
     'Fulana Siqueira',
   ]);
 
-  useEffect(() => {
-    if (cart.length === 0) {
-      history.push('/customer/products');
-    }
-  });
+  // useEffect(() => {
+  //   if (cart.length === 0) {
+  //     history.push('/customer/products');
+  //   }
+  // });
 
   // puxar os produtos do carrinho e salvar nessa chave abaixo de forma dinâmica
   const doneOrder = async () => {
