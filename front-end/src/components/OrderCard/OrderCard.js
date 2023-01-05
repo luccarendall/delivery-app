@@ -21,6 +21,14 @@ function OrderCard({ order, propsPageName }) {
     Entregue: 'bg-[#309c2c]',
   };
 
+  const NUM_MAX_DATE = 9;
+  const addZeroToDate = (num) => {
+    if (num <= NUM_MAX_DATE) {
+      return `0${num}`;
+    }
+    return num;
+  };
+
   const addressForDelivery = (
     <p
       data-testid={ `seller_orders__element-card-address-${id}` }
@@ -58,15 +66,16 @@ function OrderCard({ order, propsPageName }) {
               data-testid={ `${propsPageName}__element-order-date-${id}` }
               className="px-2"
             >
-              {
-                `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`
-              }
+              { `${addZeroToDate(date
+                .getDate())}/${addZeroToDate(date
+                .getMonth() + 1)}/${addZeroToDate(date
+                .getFullYear())}` }
             </p>
             <p
               data-testid={ `${propsPageName}__element-card-price-${id}` }
               className="px-2"
             >
-              { `${totalPrice.replace('.', ',')}` }
+              { `R$ ${totalPrice.replace('.', ',')}` }
             </p>
           </div>
         </div>
