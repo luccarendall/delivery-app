@@ -5,6 +5,7 @@ import ProductsPreview from '../../components/ProductsPreview/ProductsPreview';
 import useLocalStorage from '../../hooks/useLocalStorage';
 import requestApi from '../../utils/RequestAPI';
 import CartContext from '../../context/cartContext';
+import './checkout.css';
 
 export default function Checkout() {
   // const [orders, setOrders] = useState([]);
@@ -16,9 +17,11 @@ export default function Checkout() {
   const [deliveryNumber, setDeliveryNumber] = useState('');
   // const [cart, setCart] = useState('');
   const [sellers, setSellers] = useState([
-    'Fulana Pereira',
-    'Fulano Pereira',
-    'Fulana Siqueira',
+    'Augusto Varandas',
+    'Cristiane Dutra',
+    'Henrique Prim',
+    'Lucca Rendall',
+    'Luiz Felipe',
   ]);
   const classInput = `appearance-none p-2 border-b rounded 
   border-grey focus:outline-none focus:border-yellow 
@@ -35,7 +38,9 @@ export default function Checkout() {
 
   const centralizarDiv = 'flex justify-center items-center';
 
-  const greyText = 'text-gray-400 px-4 text-1xl mb-4';
+  const greyText = `flex justify-center items-center 
+  text-gray-400 px-4 text-1xl mt-8 mb-4`;
+
   // puxar os produtos do carrinho e salvar nessa chave abaixo de forma dinâmica
   const doneOrder = async () => {
     const { data } = await requestApi(
@@ -116,7 +121,7 @@ export default function Checkout() {
             className={ labelText }
             htmlFor="select"
           >
-            P. vendedora responsável
+            Pessoa vendedora:
             <select
               data-testid="customer_checkout__select-seller"
               onChange={ handlerSellers && handlerSelect }
@@ -135,7 +140,7 @@ export default function Checkout() {
             htmlFor="input-adress"
             className={ labelText }
           >
-            Endereço
+            Endereço:
             <input
               type="text"
               id="input-adress"
@@ -150,7 +155,7 @@ export default function Checkout() {
             htmlFor="input-adress-number"
             className={ labelText }
           >
-            Número
+            Número:
             <input
               type="number"
               id="input-adress-number"
