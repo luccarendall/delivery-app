@@ -5,7 +5,6 @@ import ProductsPreview from '../../components/ProductsPreview/ProductsPreview';
 import useLocalStorage from '../../hooks/useLocalStorage';
 import requestApi from '../../utils/RequestAPI';
 import CartContext from '../../context/cartContext';
-import './checkout.css';
 
 export default function Checkout() {
   // const [orders, setOrders] = useState([]);
