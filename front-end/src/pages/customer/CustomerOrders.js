@@ -4,6 +4,7 @@ import useLocalStorage from '../../hooks/useLocalStorage';
 import NavBar from '../../components/NavBar/NavBar';
 import requestApi from '../../utils/RequestAPI';
 import OrderCard from '../../components/OrderCard/OrderCard';
+import Footer from '../../components/Footer/Footer';
 
 export default function CustomerOrders() {
   const [orders, setOrders] = useState([]);
@@ -33,9 +34,11 @@ export default function CustomerOrders() {
 
   return (
     <div
-      className="grid"
+      className="grid relative"
     >
-      <div>
+      <div
+        className="sticky top-0 w-full z-50"
+      >
         <NavBar />
         <h1
           className="font-bold text-lg mb-6 bg-yellow px-4 py-1.5
@@ -63,6 +66,7 @@ export default function CustomerOrders() {
           ))
         }
       </div>
+      <Footer />
     </div>
   );
 }

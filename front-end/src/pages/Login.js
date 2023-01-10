@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import useLocalStorage from '../hooks/useLocalStorage';
 import requestApi from '../utils/RequestAPI';
+import Footer from '../components/Footer/Footer';
 
 function Login() {
   const [email, setEmail] = useState('');
@@ -142,6 +143,7 @@ function Login() {
           Registrar
         </button>
       </form>
+      <Footer />
     </div>
   );
 }

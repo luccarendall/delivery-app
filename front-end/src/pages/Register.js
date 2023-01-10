@@ -3,8 +3,9 @@ import { useHistory } from 'react-router-dom';
 import useLocalStorage from '../hooks/useLocalStorage';
 import { registerSchema } from '../schemas/registerSchema';
 import requestApi from '../utils/RequestAPI';
-import rock from '../images/rockGlass.svg';
-import userIcon from '../images/user-icon.png';
+import rock from '../images&Info/rockGlass.svg';
+import userIcon from '../images&Info/user-icon.png';
+import Footer from '../components/Footer/Footer';
 
 export default function Register() {
   const [name, setName] = useState('');
@@ -142,6 +143,7 @@ export default function Register() {
         </form>
         { badRegister && invalidRegisterMessage }
       </div>
+      <Footer />
     </div>
   );
 }
