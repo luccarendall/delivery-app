@@ -1,9 +1,0 @@
-/* stylelint-disable */
-/* retirar as setas do input number */
-/* https://horadecodar.com.br/2021/06/11/como-esconder-o-contador-do-input-number/ */
-
-input[type="number"]::-webkit-outer-spin-button,
-input[type="number"]::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-}
