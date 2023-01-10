@@ -8,6 +8,7 @@ function ProductsPreview({ propsProducts, propsPageName }) {
   const { location: { pathname } } = useHistory();
 
   const removeColumn = <th>Remover Item</th>;
+  const classButton = 'bg-red-400 rounded-sm px-3 py-1 mx-2 hover:bg-h-red-300';
 
   const removeButton = (product, index) => (
     <td>
@@ -15,6 +16,7 @@ function ProductsPreview({ propsProducts, propsPageName }) {
         type="button"
         data-testid={ `${propsPageName}__element-order-table-remove-${index}` }
         onClick={ () => removeProduct(product.id) }
+        className={ classButton }
       >
         Remover
       </button>
