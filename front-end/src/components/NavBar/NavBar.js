@@ -1,8 +1,8 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 import useLocalStorage from '../../hooks/useLocalStorage';
-import rock from '../../images/rockGlass.svg';
-import userIcon from '../../images/user-icon.png';
+import rock from '../../images&Info/rockGlass.svg';
+import userIcon from '../../images&Info/user-icon.png';
 
 function NavBar() {
   const history = useHistory();
