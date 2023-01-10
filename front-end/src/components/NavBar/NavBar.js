@@ -74,7 +74,7 @@ function NavBar() {
       <nav className="flex items-center h-14 justify-between bg-white">
         <div className="flex items-center">
           <img src={ rock } alt="Icone do e-commerce" className="w-10 inline mx-3" />
-          <span className="mr-3 font-bold text-xl">Drinks E-Commerce</span>
+          <span className="mr-3 font-bold text-xl">Drinks Delivery</span>
           { roleButton[role] }
         </div>
         <div className="flex items-center">
