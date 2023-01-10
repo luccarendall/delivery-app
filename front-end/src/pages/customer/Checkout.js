@@ -18,6 +18,7 @@ export default function Checkout() {
   const [sellers, setSellers] = useState([
     'Augusto Varandas',
     'Cristiane Dutra',
+    'Gabriel Rodrigues',
     'Henrique Prim',
     'Lucca Rendall',
     'Luiz Felipe',
