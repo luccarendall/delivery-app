@@ -12,6 +12,10 @@ function Login() {
   const history = useHistory();
   const [user] = useLocalStorage('user', '');
 
+  const classInput = `p-2 border-b border-grey focus:outline-none focus:border-yellow 
+  focus:border-b-2`;
+
+  const centralizarDiv = 'flex h-screen justify-center items-center';
   useEffect(() => {
     const duzentos = 200;
     const verifyToken = async () => {
@@ -100,9 +104,9 @@ function Login() {
     </span>);
 
   return (
-    <div>
-      <form>
-        <label htmlFor="email-input">
+    <div className={ centralizarDiv }>
+      <form className="flex flex-col items-center w-min p-4 animate-slide-to-left">
+        <label htmlFor="email-input" className="mt-10">
           Email
           <input
             value={ email }
@@ -111,9 +115,10 @@ function Login() {
             id="email-input"
             type="email"
             placeholder="Email"
+            className={ classInput }
           />
         </label>
-        <label htmlFor="password-input">
+        <label htmlFor="password-input" className="mt-10">
           Senha
           <input
             value={ password }
@@ -122,25 +127,33 @@ function Login() {
             id="password-input"
             type="password"
             placeholder="Senha"
+            className={ classInput }
           />
         </label>
         { !LoginSuccesfull && invalidLoginMessage }
-        <button
-          onClick={ login }
-          type="button"
-          data-testid="common_login__button-login"
-          disabled={ isDisabled }
-        >
-          Login
-        </button>
-        <button
-          type="button"
-          data-testid="common_login__button-register"
-          onClick={ () => history.push('/register') }
-          className="font-bold text-yellow"
-        >
-          Registrar
-        </button>
+
+        <div>
+          <button
+            onClick={ login }
+            type="button"
+            data-testid="common_login__button-login"
+            disabled={ isDisabled }
+            className="mt-4 h-min rounded-sm p-2 text-1.5xs font-bold bg-black text-white"
+          >
+            Login
+          </button>
+
+          <button
+            type="button"
+            data-testid="common_login__button-register"
+            onClick={ () => history.push('/register') }
+            className="mt-4 h-min rounded-sm p-2 bg-yellow text-black 1.5text-xs font-bold
+          disabled:bg-grey disabled:text-white"
+          >
+            Registrar
+          </button>
+        </div>
+
       </form>
     </div>
   );
