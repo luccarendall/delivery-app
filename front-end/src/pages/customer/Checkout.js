@@ -89,7 +89,7 @@ export default function Checkout() {
     <div>
       <NavBar />
       <main className={ centralizarDiv }>
-        <div>
+        <div className="w-5/12">
           <span
             className={ greyText }
           >
