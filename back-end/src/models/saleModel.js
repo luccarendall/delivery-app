@@ -51,8 +51,7 @@ const getSaleById = async (role, userId, id) => {
     {
       model: User,
       as: 'seller',
-      //through: { attributes: [] },
-    }  
+    },
   ],
   where: role === 'customer' ? { userId, id } : { sellerId: userId, id },
   });
