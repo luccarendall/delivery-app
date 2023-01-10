@@ -39,7 +39,7 @@ export default function Orders() {
         className="font-bold text-lg mb-6 bg-yellow py-1.5
         text-center drop-shadow-md"
       >
-        Meus Pedidos
+        Pedidos
       </h1>
       <div
         className="grid grid-cols-2 place-self-center justify-items-center
