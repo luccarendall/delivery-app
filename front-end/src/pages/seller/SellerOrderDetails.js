@@ -10,7 +10,8 @@ function SellerOrderDetails({ match: { params: { id } } }) {
   const [user] = useLocalStorage('user', '');
 
   const mainComponent = `flex justify-items-center items-center flex-col
-  text-xl border-2 border-solid border-black rounded shadow-lg shadow-zinc-400 w-2/3`;
+  text-xl border-2 border-solid border-grey-500
+  rounded-lg shadow-lg shadow-zinc-400 w-2/3`;
   const greyText = 'text-gray-400 px-4 text-1xl mb-4';
   const infoText = 'mr-2';
   const statusColor = {
@@ -52,7 +53,7 @@ function SellerOrderDetails({ match: { params: { id } } }) {
     <div>
       <NavBar />
       <div className="flex justify-center items-center flex-col mt-12">
-        <p className={ `${greyText} text-2xl` }>Detalhe do Pedido</p>
+        <p className={ `${greyText} text-2xl font-medium` }>Detalhe do Pedido</p>
         <main className={ mainComponent }>
           <div className="w-full flex justify-around items-center my-2">
             <span
@@ -104,10 +105,12 @@ function SellerOrderDetails({ match: { params: { id } } }) {
               Saiu para entrega
             </button>
           </div>
-          { order.products && <ProductsPreview
-            propsPageName="seller_order_details"
-            propsProducts={ order.products }
-          />}
+          <div className="w-11/12">
+            { order.products && <ProductsPreview
+              propsPageName="seller_order_details"
+              propsProducts={ order.products }
+            />}
+          </div>
         </main>
 
       </div>

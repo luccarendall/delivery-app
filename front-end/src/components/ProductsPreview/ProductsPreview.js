@@ -7,27 +7,25 @@ function ProductsPreview({ propsProducts, propsPageName }) {
   const { removeProduct } = useContext(cartContext);
   const { location: { pathname } } = useHistory();
 
-  // const removeColumn = <th>Remover Item</th>;
-
   const columns = `px-3 
   rounded py-1 mx-2 text-zinc-800 font-bold text-sm`;
 
   const classButton = `bg-red-500 px-3 
   rounded py-1 mx-2 text-white font-bold text-sm`;
 
-  const styleItem = 'bg-green-500 px-3 py-1 mx-2 font-bold';
+  const styleItem = 'bg-yellow px-3 py-1 mx-2 font-bold rounded-l-lg';
 
   const styleDescription = `bg-gray-200 
   px-3 py-1 mx-2 text-zinc-800 font-bold`;
 
-  const styleQty = `bg-emerald-600 
+  const styleQty = `bg-[#EB8636] 
   px-3 py-1 mx-2 text-center text-white font-bold`;
 
-  const stylePrice = `bg-violet-600  ml-2
+  const stylePrice = `bg-h-yellow  ml-2
   px-3 py-1 mx-2 text-center text-white font-bold`;
 
-  const styleSubTotal = `bg-sky-500 ml-2
-  px-3 py-1 mx-2 text-center text-white font-bold`;
+  const styleSubTotal = `bg-[#4084e9] ml-2
+  px-3 py-1 mx-2 text-center text-white font-bold rounded-r-lg`;
 
   const styleTotal = `ml-2
   px-3 py-1 mx-2 text-center text-zinc-800 text-xl font-bold`;
@@ -46,8 +44,8 @@ function ProductsPreview({ propsProducts, propsPageName }) {
   );
 
   return (
-    <section className="sale-card">
-      <table className="sale-card-products-list">
+    <section className="sale-card w-full">
+      <table className="w-full table-auto border-separate border-spacing-y-2">
         <thead>
           <tr
             className={ columns }
