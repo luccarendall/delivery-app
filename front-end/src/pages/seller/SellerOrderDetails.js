@@ -105,14 +105,13 @@ function SellerOrderDetails({ match: { params: { id } } }) {
               Saiu para entrega
             </button>
           </div>
-          <div className="w-11/12">
+          <div className="w-11/12 mb-2">
             { order.products && <ProductsPreview
               propsPageName="seller_order_details"
               propsProducts={ order.products }
             />}
           </div>
         </main>
-
       </div>
     </div>
   );
