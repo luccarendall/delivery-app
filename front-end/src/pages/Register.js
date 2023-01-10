@@ -14,6 +14,8 @@ export default function Register() {
   const [badRegister, setBadRegister] = useState(false);
   const setUser = useLocalStorage('user', {})[1];
   const history = useHistory();
+  const classInput = `p-2 border-b border-grey focus:outline-none focus:border-yellow 
+  focus:border-b-2`;
 
   useEffect(() => {
     const enabledButton = () => {
@@ -91,8 +93,7 @@ export default function Register() {
               id="name-input-register"
               type="name"
               placeholder="Seu Nome"
-              className="p-2 border-b border-grey focus:outline-none focus:border-yellow
-              focus:border-b-2"
+              className={ classInput }
             />
           </label>
           <label htmlFor="email-input-register" className="mt-10">
@@ -103,8 +104,7 @@ export default function Register() {
               id="email-input-register"
               type="email"
               placeholder="seu-email@site.com.br"
-              className="p-2 border-b border-grey focus:outline-none focus:border-yellow
-              focus:border-b-2"
+              className={ classInput }
             />
           </label>
           <label htmlFor="password-input-register" className="mt-10">
@@ -115,8 +115,7 @@ export default function Register() {
               id="password-input-register"
               type="password"
               placeholder="***********"
-              className="p-2 border-b border-grey focus:outline-none focus:border-yellow
-              focus:border-b-2"
+              className={ classInput }
             />
           </label>
           <div className="flex justify-around w-full">
