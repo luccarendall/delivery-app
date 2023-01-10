@@ -20,13 +20,17 @@ export default function Checkout() {
     'Fulano Pereira',
     'Fulana Siqueira',
   ]);
+  const classInput = `appearance-none p-2 border-b rounded 
+  border-grey focus:outline-none focus:border-yellow 
+  focus:border-b-2`;
 
-  // useEffect(() => {
-  //   if (cart.length === 0) {
-  //     history.push('/customer/products');
-  //   }
-  // });
+  const classButton = `px-10 shadow bg-yellow 
+  hover:bg-r-yellow focus:shadow-outline focus:outline-none 
+  text-gray-800 font-bold p-2 py-4 px-12 rounded `;
 
+  const labelText = 'mb-2 text-sm font-medium text-gray-900 dark:text-white';
+
+  const centralizarDiv = 'flex justify-center items-center';
   // puxar os produtos do carrinho e salvar nessa chave abaixo de forma dinâmica
   const doneOrder = async () => {
     const { data } = await requestApi(
@@ -75,7 +79,12 @@ export default function Checkout() {
       <NavBar />
       <main>
         <div>
-          <span>Finalizar Pedido</span>
+          <span
+            className="text-gray-400 px-4 text-1xl mb-4"
+          >
+            Finalizar Pedido
+
+          </span>
           <ProductsPreview
             propsPageName="customer_checkout"
             propsProducts={ cart.map((product) => ({
@@ -86,20 +95,29 @@ export default function Checkout() {
         </div>
       </main>
 
-      <footer>
-        <span>Detalhes e endereço de entrega</span>
-        <form>
-          <label htmlFor="select">
+      <br />
+
+      <span
+        className="text-gray-400 px-4 text-1xl mb-4"
+      >
+        Detalhes e endereço de entrega
+      </span>
+
+      <div className="px-4 py-5">
+        <form className={ centralizarDiv }>
+          <label
+            className={ labelText }
+            htmlFor="select"
+          >
             P. vendedora responsável
             <select
-              id="select"
               data-testid="customer_checkout__select-seller"
               onChange={ handlerSellers && handlerSelect }
               // value={ sellers }
               // defaultValue={ sellers[0] }
-
+              id="select"
+              className={ classInput }
             >
-
               {sellers.map((name, index) => (
                 <option key={ index }>
                   { name }
@@ -108,18 +126,25 @@ export default function Checkout() {
             </select>
           </label>
 
-          <label htmlFor="input-adress">
+          <label
+            htmlFor="input-adress"
+            className={ labelText }
+          >
             Endereço
             <input
               type="text"
               id="input-adress"
-              placeholder="Travessa Terceira da Castellana, Bairro Muruci"
+              placeholder="Travessa Terceira da Castellana"
               data-testid="customer_checkout__input-address"
               onChange={ handlerAdress }
+              className={ classInput }
             />
           </label>
 
-          <label htmlFor="input-adress-number">
+          <label
+            htmlFor="input-adress-number"
+            className={ labelText }
+          >
             Número
             <input
               type="number"
@@ -127,20 +152,25 @@ export default function Checkout() {
               placeholder="198"
               data-testid="customer_checkout__input-address-number"
               onChange={ handlerAdressNumber }
+              className={ classInput }
             />
           </label>
         </form>
+      </div>
 
+      <div
+        className={ centralizarDiv }
+      >
         <button
           type="button"
           data-testid="customer_checkout__button-submit-order"
           onClick={ () => doneOrder() }
           disabled={ deliveryAddress.length === 0 || deliveryNumber.length === 0 }
+          className={ classButton }
         >
           Finalizar pedido
         </button>
-      </footer>
-
+      </div>
     </>
   );
 }
