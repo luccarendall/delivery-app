@@ -29,8 +29,8 @@ function ProductsPreview({ propsProducts, propsPageName }) {
   const styleSubTotal = `bg-sky-500 ml-2
   px-3 py-1 mx-2 text-center text-white font-bold`;
 
-  const styleTotal = `ml-2 px-3 py-1 mx-2 text-center 
-  text-zinc-800 text-xl font-bold`;
+  const styleTotal = `ml-2
+  px-3 py-1 mx-2 text-center text-zinc-800 text-xl font-bold`;
 
   const removeButton = (product, index) => (
     <td>
