@@ -33,22 +33,33 @@ export default function Orders() {
   };
 
   return (
-    <div>
+    <div className="grid">
       <NavBar />
-      {
-        orders && orders.map((order) => (
-          <button
-            key={ order.id }
-            type="button"
-            onClick={ () => goTo(`/seller/orders/${order.id}`) }
-          >
-            <OrderCard
-              propsPageName="seller_orders"
-              order={ order }
-            />
-          </button>
-        ))
-      }
+      <h1
+        className="font-bold text-lg mb-6 bg-yellow py-1.5
+        text-center drop-shadow-md"
+      >
+        Meus Pedidos
+      </h1>
+      <div
+        className="grid grid-cols-2 place-self-center justify-items-center
+        w-2/4"
+      >
+        {
+          orders && orders.map((order) => (
+            <button
+              key={ order.id }
+              type="button"
+              onClick={ () => goTo(`/seller/orders/${order.id}`) }
+            >
+              <OrderCard
+                propsPageName="seller_orders"
+                order={ order }
+              />
+            </button>
+          ))
+        }
+      </div>
     </div>
   );
 }
