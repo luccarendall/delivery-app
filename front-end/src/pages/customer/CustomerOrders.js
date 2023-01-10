@@ -7,7 +7,6 @@ import OrderCard from '../../components/OrderCard/OrderCard';
 
 export default function CustomerOrders() {
   const [orders, setOrders] = useState([]);
-  const [token] = useLocalStorage('token', '');
   const [user] = useLocalStorage('user', {});
   const history = useHistory();
 
@@ -19,11 +18,14 @@ export default function CustomerOrders() {
 
   useEffect(() => {
     const getOrders = async () => {
-      const { data } = await requestApi('GET', 'sales', {}, { authorization: token });
-      if (data) setOrders(data);
+      const goodHTTPResponse = 200;
+      const {
+        status, data,
+      } = await requestApi('GET', 'sales', {}, { authorization: user.token });
+      if (status === goodHTTPResponse) setOrders(data);
     };
     getOrders();
-  }, [token]);
+  }, [user.token]);
 
   const goTo = (endpoint) => {
     history.push(endpoint);
@@ -39,7 +41,10 @@ export default function CustomerOrders() {
             type="button"
             onClick={ () => goTo(`/customer/orders/${order.id}`) }
           >
-            <OrderCard order={ order } />
+            <OrderCard
+              propsPageName="customer_orders"
+              order={ order }
+            />
           </button>
         ))
       }

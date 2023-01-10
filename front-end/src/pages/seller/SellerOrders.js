@@ -7,7 +7,6 @@ import useLocalStorage from '../../hooks/useLocalStorage';
 
 export default function Orders() {
   const [orders, setOrders] = useState([]);
-  const [token] = useLocalStorage('token', '');
   const [user] = useLocalStorage('user', {});
 
   const history = useHistory();
@@ -22,11 +21,12 @@ export default function Orders() {
     const getOrders = async () => {
       const goodHttpResponse = 200;
       const {
-        status, data } = await requestApi('GET', 'sales', {}, { authorization: token });
+        status, data,
+      } = await requestApi('GET', 'sales', {}, { authorization: user.token });
       if (status === goodHttpResponse) setOrders(data);
     };
     getOrders();
-  }, [token]);
+  }, [user.token]);
 
   const goTo = (endpoint) => {
     history.push(endpoint);
@@ -42,7 +42,10 @@ export default function Orders() {
             type="button"
             onClick={ () => goTo(`/seller/orders/${order.id}`) }
           >
-            <OrderCard order={ order } />
+            <OrderCard
+              propsPageName="seller_orders"
+              order={ order }
+            />
           </button>
         ))
       }

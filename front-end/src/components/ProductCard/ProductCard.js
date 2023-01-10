@@ -1,22 +1,48 @@
-import React, { useState } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import propTypes from 'prop-types';
+import cartContext from '../../context/cartContext';
+import './ProductCard.css';
 
-function ProductCard({ id, name, price, urlImage }) {
+function ProductCard({ product }) {
+  const { id, name, price, urlImage } = product;
   const [qty, setQty] = useState(0);
+  const { cart, removeProduct, addToCart, updateCart } = useContext(cartContext);
+
+  useEffect(() => {
+    if (cart) {
+      const item = cart.find((cartItem) => cartItem.id === id);
+      if (item) setQty(item.qty);
+      else setQty(0);
+    }
+  }, [cart, id]);
 
   const decrement = () => {
-    setQty(qty - 1);
+    if (qty === 1) {
+      removeProduct(id);
+    } else {
+      updateCart('decrement', product);
+    }
   };
 
   const increment = () => {
-    setQty(qty + 1);
+    if (qty === 0) {
+      addToCart(product, 1);
+    } else {
+      updateCart('increment', product);
+    }
+  };
+
+  const handleQtyChange = ({ target }) => {
+    const { value } = target;
+    if (parseInt(value, 10) === 0) removeProduct(id);
+    else updateCart('manual', product, value);
   };
 
   return (
     <section className="product-card">
       <div className="product-price">
         <p data-testid={ `customer_products__element-card-price-${id}` }>
-          { `R$ ${price}` }
+          { price.toString().replace('.', ',') }
         </p>
       </div>
       <div className="product-image-container">
@@ -35,16 +61,18 @@ function ProductCard({ id, name, price, urlImage }) {
           className="product-card-rm-item"
           type="button"
           data-testid={ `customer_products__button-card-rm-item-${id}` }
+          disabled={ qty === 0 }
           onClick={ decrement }
         >
           -
         </button>
-        <span
+        <input
+          type="number"
           className="product-card-qty"
           data-testid={ `customer_products__input-card-quantity-${id}` }
-        >
-          { qty }
-        </span>
+          value={ qty }
+          onChange={ handleQtyChange }
+        />
         <button
           className="product-card-add-item"
           type="button"
@@ -59,10 +87,12 @@ function ProductCard({ id, name, price, urlImage }) {
 }
 
 ProductCard.propTypes = {
-  id: propTypes.number.isRequired,
-  name: propTypes.string.isRequired,
-  price: propTypes.number.isRequired,
-  urlImage: propTypes.string.isRequired,
+  product: propTypes.shape({
+    id: propTypes.number,
+    name: propTypes.string,
+    price: propTypes.string,
+    urlImage: propTypes.string,
+  }).isRequired,
 };
 
 export default ProductCard;

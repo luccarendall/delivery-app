@@ -7,7 +7,7 @@ import useLocalStorage from '../../hooks/useLocalStorage';
 
 function SellerOrderDetails({ match: { params: { id } } }) {
   const [order, setOrder] = useState({});
-  const [token] = useLocalStorage('token', '');
+  const [user] = useLocalStorage('user', '');
 
   useEffect(() => {
     const getOrder = async () => {
@@ -15,12 +15,12 @@ function SellerOrderDetails({ match: { params: { id } } }) {
       const {
         status,
         data,
-      } = await requestApi('GET', `sales/${id}`, {}, { authorization: token });
+      } = await requestApi('GET', `sales/${id}`, {}, { authorization: user.token });
 
       if (status === goodHttpResponse) setOrder(data);
     };
     getOrder();
-  }, [id, token]);
+  }, [id, user.token]);
 
   const handleButton = async ({ target }) => {
     const { value } = target;

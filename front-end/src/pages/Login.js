@@ -9,8 +9,28 @@ function Login() {
   const [isDisabled, setIsDisabled] = useState(true);
   const [LoginSuccesfull, setLoginSuccesfull] = useState(true);
   const setUser = useLocalStorage('user', {})[1];
-  const setToken = useLocalStorage('token', '')[1];
   const history = useHistory();
+  const [user] = useLocalStorage('user', '');
+
+  useEffect(() => {
+    const duzentos = 200;
+    const verifyToken = async () => {
+      const { data, status } = await requestApi(
+        'POST',
+        'validate',
+        {},
+        { authorization: user.token },
+      );
+
+      const role = {
+        customer: '/customer/products',
+        seller: '/seller/orders',
+        administrator: '/admin/manage',
+      };
+      if (status === duzentos) { history.push(role[data.message.role]); }
+    };
+    verifyToken();
+  }, [history, user.token]);
 
   useEffect(() => {
     const enabledButton = () => {
@@ -53,8 +73,10 @@ function Login() {
     }
 
     if (status === successStatus) {
-      setToken(data.token);
-      setUser(data.user);
+      setUser({
+        ...data.user,
+        token: data.token,
+      });
 
       if (data.user.role === 'customer') {
         history.push('/customer/products');
@@ -65,7 +87,7 @@ function Login() {
       }
 
       if (data.user.role === 'administrator') {
-        history.push('/administrator/management');
+        history.push('/admin/manage');
       }
     }
   };

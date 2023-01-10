@@ -5,6 +5,7 @@ const registerRouter = require('../routes/registerRouter');
 const saleRouter = require('../routes/saleRouter');
 const loginRouter = require('../routes/loginRouter');
 const authRouter = require('../routes/authRouter');
+const imagesRouter = require('../routes/imagesRouter');
 const { ErrorMiddleware } = require('../middlewares/ErrorMiddleware');
 
 const app = express();
@@ -19,6 +20,7 @@ app.use('/register', registerRouter);
 app.use('/login', loginRouter);
 app.use('/products', productRouter);
 app.use('/validate', authRouter);
+app.use('/images', imagesRouter);
 app.get('/coffee', (_req, res) => res.status(418).end());
 app.use(ErrorMiddleware);
 

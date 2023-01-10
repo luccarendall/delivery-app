@@ -11,7 +11,6 @@ export default function Register() {
   const [isDisabled, setIsDisabled] = useState(true);
   const [badRegister, setBadRegister] = useState(false);
   const setUser = useLocalStorage('user', {})[1];
-  const setToken = useLocalStorage('token', '')[1];
   const history = useHistory();
 
   useEffect(() => {
@@ -53,8 +52,10 @@ export default function Register() {
 
     if (status === successStatus) {
       const { data } = await requestApi('POST', 'login', { email, password });
-      setUser(data.user);
-      setToken(data.token);
+      setUser({
+        ...data.user,
+        token: data.token,
+      });
       history.push('/customer/products');
     }
     setBadRegister(true);
