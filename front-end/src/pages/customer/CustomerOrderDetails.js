@@ -9,6 +9,22 @@ function OrderDetails({ match: { params: { id } } }) {
   const [order, setOrder] = useState({});
   const [user] = useLocalStorage('user', '');
 
+  const mainComponent = `flex justify-items-center items-center flex-col
+  text-xl border-2 border-solid border-grey-500
+  rounded-lg shadow-lg shadow-zinc-400 w-2/3`;
+  const greyText = 'text-gray-400 px-4 text-1xl mb-4';
+  const infoText = 'mr-2';
+  const statusColor = {
+    Pendente: 'bg-[#ff4646]',
+    Preparando: 'bg-[#d6b333]',
+    'Em Trânsito': 'bg-[#4084e9]',
+    Entregue: 'bg-[#309c2c]',
+  };
+  const roundedBackground = 'px-4 py-2 rounded-md';
+  const buttons = `font-medium disabled:bg-grey duration-200
+  shadow disabled:shadow-grey border-none
+  text-white`;
+
   useEffect(() => {
     const getOrder = async () => {
       await requestApi('GET', `sales/${id}`, {}, { authorization: user.token })
@@ -31,54 +47,72 @@ function OrderDetails({ match: { params: { id } } }) {
   const statusId = 'customer_order_details__element-order-details-label-delivery-status';
 
   const NUM_MAX_DATE = 9;
-  const addZeroDate = (num) => {
+  const addZero = (num) => {
     if (num <= NUM_MAX_DATE) {
       return `0${num}`;
     }
     return num;
   };
 
+  console.log(order);
+
   return (
     <div>
       <NavBar />
-      <p>Detalhe do Pedido</p>
-      <div>
-        <span data-testid="customer_order_details__element-order-details-label-order-id">
-          {`Pedido ${order.id}`}
-          ;
-        </span>
-        <span
-          data-testid="customer_order_details__element-order-details-label-seller-name"
-        >
-          {` P. Vend:  ${order.seller ? order.seller.name : ''}`}
-          ;
-        </span>
-        <span
-          data-testid="customer_order_details__element-order-details-label-order-date"
-        >
-          {
-            `${date.getDate()}/${addZeroDate(date.getMonth() + 1)}/${date.getFullYear()}`
-          }
-        </span>
-        <span
-          data-testid={ statusId }
-        >
-          {order.status}
-        </span>
-        <button
-          data-testid="customer_order_details__button-delivery-check"
-          type="button"
-          onClick={ handleButton }
-          value="Entregue"
-          disabled={ order.status !== 'Em Trânsito' }
-        >
-          Marcar como entregue
-        </button>
+      <div className="flex justify-center items-center flex-col mt-12">
+        <p className={ `${greyText} text-2xl font-medium` }>Detalhe do Pedido</p>
+        <main className={ mainComponent }>
+          <div className="w-full flex justify-around items-center my-2">
+            <span
+              className={ infoText }
+              data-testid="customer_order_details__element-order-details-label-order-id"
+            >
+              {`Pedido ${order.id}`}
+            </span>
+            <span
+              className={ infoText }
+              data-testid="customer_order_details__element-order-details-label-seller
+              -name"
+            >
+              {` P. Vend:  ${order.seller ? order.seller.name : 'Fulana'}`}
+            </span>
+            <span
+              className={ infoText }
+              data-testid="customer_order_details__element-order-details-label-order-date"
+            >
+              {
+                `${date.getDate()}/${addZero(date.getMonth() + 1)}/${date.getFullYear()}`
+              }
+            </span>
+            <span
+              className={
+                `${infoText} ${statusColor[order.status]} ${roundedBackground} text-white`
+              }
+              data-testid={ statusId }
+            >
+              {order.status}
+            </span>
+            <button
+              className={
+                `${infoText} ${roundedBackground} ${buttons} ${statusColor.Entregue}`
+              }
+              data-testid="customer_order_details__button-delivery-check"
+              type="button"
+              onClick={ handleButton }
+              value="Entregue"
+              disabled={ order.status !== 'Em Trânsito' }
+            >
+              Marcar como entregue
+            </button>
+          </div>
+          <div className="w-11/12 mb-2">
+            { order.products && <ProductsPreview
+              propsPageName="customer_order_details"
+              propsProducts={ order.products }
+            />}
+          </div>
+        </main>
       </div>
-      { order.products && <ProductsPreview
-        propsPageName="customer_order_details"
-        propsProducts={ order.products }
-      />}
     </div>
   );
 }
