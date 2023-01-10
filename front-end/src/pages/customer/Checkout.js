@@ -22,15 +22,20 @@ export default function Checkout() {
   ]);
   const classInput = `appearance-none p-2 border-b rounded 
   border-grey focus:outline-none focus:border-yellow 
-  focus:border-b-2`;
+  focus:border-b-2 bg-white`;
 
   const classButton = `px-10 shadow bg-yellow 
   hover:bg-r-yellow focus:shadow-outline focus:outline-none 
-  text-gray-800 font-bold p-2 py-4 px-12 rounded `;
+  text-gray-800 font-bold p-2 py-4 px-12 rounded
+  disabled:bg-grey duration-200`;
 
-  const labelText = 'mb-2 text-sm font-medium text-gray-900 dark:text-white';
+  const labelText = `
+  mb-2 text-sm font-medium text-gray-900 dark:text-white mr-2
+  flex flex-col justify-center items-start ml-2`;
 
   const centralizarDiv = 'flex justify-center items-center';
+
+  const greyText = 'text-gray-400 px-4 text-1xl mb-4';
   // puxar os produtos do carrinho e salvar nessa chave abaixo de forma dinâmica
   const doneOrder = async () => {
     const { data } = await requestApi(
@@ -77,10 +82,10 @@ export default function Checkout() {
   return (
     <>
       <NavBar />
-      <main>
+      <main className={ centralizarDiv }>
         <div>
           <span
-            className="text-gray-400 px-4 text-1xl mb-4"
+            className={ greyText }
           >
             Finalizar Pedido
 
@@ -97,11 +102,13 @@ export default function Checkout() {
 
       <br />
 
-      <span
-        className="text-gray-400 px-4 text-1xl mb-4"
-      >
-        Detalhes e endereço de entrega
-      </span>
+      <div className={ centralizarDiv }>
+        <span
+          className={ greyText }
+        >
+          Detalhes e endereço de entrega
+        </span>
+      </div>
 
       <div className="px-4 py-5">
         <form className={ centralizarDiv }>
@@ -113,8 +120,6 @@ export default function Checkout() {
             <select
               data-testid="customer_checkout__select-seller"
               onChange={ handlerSellers && handlerSelect }
-              // value={ sellers }
-              // defaultValue={ sellers[0] }
               id="select"
               className={ classInput }
             >
