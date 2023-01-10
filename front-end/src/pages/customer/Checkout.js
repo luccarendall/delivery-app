@@ -5,6 +5,7 @@ import ProductsPreview from '../../components/ProductsPreview/ProductsPreview';
 import useLocalStorage from '../../hooks/useLocalStorage';
 import requestApi from '../../utils/RequestAPI';
 import CartContext from '../../context/cartContext';
+import Footer from '../../components/Footer/Footer';
 
 export default function Checkout() {
   // const [orders, setOrders] = useState([]);
@@ -180,7 +181,7 @@ export default function Checkout() {
         >
           Finalizar pedido
         </button>
-      </div>
+      <Footer />
     </>
   );
 }

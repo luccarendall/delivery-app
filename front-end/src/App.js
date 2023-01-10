@@ -11,6 +11,7 @@ import CustomerOrders from './pages/customer/CustomerOrders';
 import CustomerOrderDetail from './pages/customer/CustomerOrderDetails';
 import { CartProvider } from './context/cartContext';
 import CustomerCheckout from './pages/customer/Checkout';
+import AboutInfo from './pages/About';
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
           <Route exact path="/seller/orders" component={ SellerOrders } />
           <Route exact path="/admin/manage" component={ Management } />
           <Route exact path="/register" component={ Register } />
+          <Route exact path="/about" component={ AboutInfo } />
           <Redirect from="/" to="/login" />
         </Switch>
       </CartProvider>
