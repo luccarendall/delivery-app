@@ -17,16 +17,30 @@ export default function Checkout() {
   const [deliveryNumber, setDeliveryNumber] = useState('');
   // const [cart, setCart] = useState('');
   const [sellers, setSellers] = useState([
-    'Fulana Pereira',
-    'Fulano Pereira',
-    'Fulana Siqueira',
+    'Augusto Varandas',
+    'Cristiane Dutra',
+    'Gabriel Rodrigues',
+    'Henrique Prim',
+    'Lucca Rendall',
+    'Luiz Felipe',
   ]);
+  const classInput = `appearance-none p-2 border-b rounded 
+  border-grey focus:outline-none focus:border-yellow 
+  focus:border-b-2 bg-white`;
 
-  // useEffect(() => {
-  //   if (cart.length === 0) {
-  //     history.push('/customer/products');
-  //   }
-  // });
+  const classButton = `px-10 shadow bg-yellow 
+  hover:bg-r-yellow focus:shadow-outline focus:outline-none 
+  text-gray-800 font-bold p-2 py-4 px-12 rounded
+  disabled:bg-grey duration-200`;
+
+  const labelText = `
+  mb-2 text-sm font-medium text-gray-900 dark:text-white mr-2
+  flex flex-col justify-center items-start ml-2`;
+
+  const centralizarDiv = 'flex justify-center items-center';
+
+  const greyText = `flex justify-center items-center 
+  text-gray-400 px-4 text-1xl mt-8 mb-4`;
 
   // puxar os produtos do carrinho e salvar nessa chave abaixo de forma dinâmica
   const doneOrder = async () => {
@@ -74,9 +88,14 @@ export default function Checkout() {
   return (
     <>
       <NavBar />
-      <main>
+      <main className={ centralizarDiv }>
         <div>
-          <span>Finalizar Pedido</span>
+          <span
+            className={ greyText }
+          >
+            Finalizar Pedido
+
+          </span>
           <ProductsPreview
             propsPageName="customer_checkout"
             propsProducts={ cart.map((product) => ({
@@ -87,20 +106,29 @@ export default function Checkout() {
         </div>
       </main>
 
-      <footer>
-        <span>Detalhes e endereço de entrega</span>
-        <form>
-          <label htmlFor="select">
-            P. vendedora responsável
+      <br />
+
+      <div className={ centralizarDiv }>
+        <span
+          className={ greyText }
+        >
+          Detalhes e endereço de entrega
+        </span>
+      </div>
+
+      <div className="px-4 py-5">
+        <form className={ centralizarDiv }>
+          <label
+            className={ labelText }
+            htmlFor="select"
+          >
+            Pessoa vendedora:
             <select
-              id="select"
               data-testid="customer_checkout__select-seller"
               onChange={ handlerSellers && handlerSelect }
-              // value={ sellers }
-              // defaultValue={ sellers[0] }
-
+              id="select"
+              className={ classInput }
             >
-
               {sellers.map((name, index) => (
                 <option key={ index }>
                   { name }
@@ -109,38 +137,50 @@ export default function Checkout() {
             </select>
           </label>
 
-          <label htmlFor="input-adress">
-            Endereço
+          <label
+            htmlFor="input-adress"
+            className={ labelText }
+          >
+            Endereço:
             <input
               type="text"
               id="input-adress"
-              placeholder="Travessa Terceira da Castellana, Bairro Muruci"
+              placeholder="Travessa Terceira da Castellana"
               data-testid="customer_checkout__input-address"
               onChange={ handlerAdress }
+              className={ classInput }
             />
           </label>
 
-          <label htmlFor="input-adress-number">
-            Número
+          <label
+            htmlFor="input-adress-number"
+            className={ labelText }
+          >
+            Número:
             <input
               type="number"
               id="input-adress-number"
               placeholder="198"
               data-testid="customer_checkout__input-address-number"
               onChange={ handlerAdressNumber }
+              className={ classInput }
             />
           </label>
         </form>
+      </div>
 
+      <div
+        className={ centralizarDiv }
+      >
         <button
           type="button"
           data-testid="customer_checkout__button-submit-order"
           onClick={ () => doneOrder() }
           disabled={ deliveryAddress.length === 0 || deliveryNumber.length === 0 }
+          className={ classButton }
         >
           Finalizar pedido
         </button>
-      </footer>
       <Footer />
     </>
   );

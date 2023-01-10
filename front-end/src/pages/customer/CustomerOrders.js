@@ -41,8 +41,8 @@ export default function CustomerOrders() {
       >
         <NavBar />
         <h1
-          className="font-bold text-lg mb-6 bg-yellow px-4 py-1.5
-          rounded-sm text-center drop-shadow-md"
+          className="font-bold text-lg mb-6 bg-yellow py-1.5
+          text-center drop-shadow-md"
         >
           Meus Pedidos
         </h1>
