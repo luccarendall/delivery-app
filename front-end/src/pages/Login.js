@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import useLocalStorage from '../hooks/useLocalStorage';
 import requestApi from '../utils/RequestAPI';
+import logo from '../images/logo-maior.png';
 
 function Login() {
   const [email, setEmail] = useState('');
@@ -14,8 +15,18 @@ function Login() {
 
   const classInput = `p-2 border-b border-grey focus:outline-none focus:border-yellow 
   focus:border-b-2`;
+  const button1 = `mt-4 h-min rounded-sm p-2 
+  text-1.5xs font-bold bg-black text-white`;
 
-  const centralizarDiv = 'flex h-screen justify-center items-center';
+  const button2 = `mt-4 h-min rounded-sm p-2 
+  bg-yellow text-black 1.5text-xs font-bold
+  disabled:bg-grey disabled:text-white`;
+
+  const centralizarDiv = 'flex justify-center items-center';
+
+  const divMain = `flex justify-center items-center 
+  mt-10 mr-16.25 animate-slide-to-left`;
+
   useEffect(() => {
     const duzentos = 200;
     const verifyToken = async () => {
@@ -104,57 +115,61 @@ function Login() {
     </span>);
 
   return (
-    <div className={ centralizarDiv }>
-      <form className="flex flex-col items-center w-min p-4 animate-slide-to-left">
-        <label htmlFor="email-input" className="mt-10">
-          Email
-          <input
-            value={ email }
-            onChange={ handleEmailChange }
-            data-testid="common_login__input-email"
-            id="email-input"
-            type="email"
-            placeholder="Email"
-            className={ classInput }
-          />
-        </label>
-        <label htmlFor="password-input" className="mt-10">
-          Senha
-          <input
-            value={ password }
-            onChange={ handlePasswordChange }
-            data-testid="common_login__input-password"
-            id="password-input"
-            type="password"
-            placeholder="Senha"
-            className={ classInput }
-          />
-        </label>
-        { !LoginSuccesfull && invalidLoginMessage }
+    <div>
+      <div className={ divMain }>
+        <img className="object-cover h-48 w-86" alt="logo" src={ logo } />
+      </div>
+      <div className={ centralizarDiv }>
+        <form className="flex flex-col items-center w-min animate-slide-to-left">
+          <label htmlFor="email-input" className="mt-10">
+            Email
+            <input
+              value={ email }
+              onChange={ handleEmailChange }
+              data-testid="common_login__input-email"
+              id="email-input"
+              type="email"
+              placeholder="Email"
+              className={ classInput }
+            />
+          </label>
+          <label htmlFor="password-input" className="mt-10">
+            Senha
+            <input
+              value={ password }
+              onChange={ handlePasswordChange }
+              data-testid="common_login__input-password"
+              id="password-input"
+              type="password"
+              placeholder="Senha"
+              className={ classInput }
+            />
+          </label>
+          { !LoginSuccesfull && invalidLoginMessage }
 
-        <div>
-          <button
-            onClick={ login }
-            type="button"
-            data-testid="common_login__button-login"
-            disabled={ isDisabled }
-            className="mt-4 h-min rounded-sm p-2 text-1.5xs font-bold bg-black text-white"
-          >
-            Login
-          </button>
+          <div>
+            <button
+              onClick={ login }
+              type="button"
+              data-testid="common_login__button-login"
+              disabled={ isDisabled }
+              className={ button1 }
+            >
+              Login
+            </button>
 
-          <button
-            type="button"
-            data-testid="common_login__button-register"
-            onClick={ () => history.push('/register') }
-            className="mt-4 h-min rounded-sm p-2 bg-yellow text-black 1.5text-xs font-bold
-          disabled:bg-grey disabled:text-white"
-          >
-            Registrar
-          </button>
-        </div>
+            <button
+              type="button"
+              data-testid="common_login__button-register"
+              onClick={ () => history.push('/register') }
+              className={ button2 }
+            >
+              Registrar
+            </button>
+          </div>
 
-      </form>
+        </form>
+      </div>
     </div>
   );
 }
