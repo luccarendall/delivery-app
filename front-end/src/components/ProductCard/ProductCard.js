@@ -1,7 +1,6 @@
 import React, { useState, useContext, useEffect } from 'react';
 import propTypes from 'prop-types';
 import cartContext from '../../context/cartContext';
-import './ProductCard.css';
 
 function ProductCard({ product }) {
   const { id, name, price, urlImage } = product;
@@ -39,26 +38,46 @@ function ProductCard({ product }) {
   };
 
   return (
-    <section className="product-card">
-      <div className="product-price">
-        <p data-testid={ `customer_products__element-card-price-${id}` }>
-          { price.toString().replace('.', ',') }
-        </p>
+    <section
+      className="flex flex-col w-60 h-80 items-center rounded-lg m-8
+      justify-between"
+    >
+      <div
+        className="flex flex-col items-center rounded-t-lg w-full h-full
+        border-white border-x-2 border-t-2"
+      >
+        <div className="w-full mt-3">
+          <div
+            className="text-white bg-black w-max p-1 px-4 font-bold rounded-r
+            drop-shadow-xl absolute z-10"
+          >
+            <span>R$ </span>
+            <span data-testid={ `customer_products__element-card-price-${id}` }>
+              { price.toString().replace('.', ',') }
+            </span>
+          </div>
+        </div>
+        <div className="flex items-center justify-center w-full h-full">
+          <img
+            className="w-28 hover:scale-150 duration-150 hover:rotate-12"
+            src={ urlImage }
+            alt={ name }
+            data-testid={ `customer_products__img-card-bg-image-${id}` }
+          />
+        </div>
       </div>
-      <div className="product-image-container">
-        <img
-          className="product-card-img"
-          src={ urlImage }
-          alt={ name }
-          data-testid={ `customer_products__img-card-bg-image-${id}` }
-        />
-      </div>
-      <div className="product-card-qty">
-        <p data-testid={ `customer_products__element-card-title-${id}` }>
+      <div
+        className="text-center bg-yellow p-4 rounded-b-lg w-full border-black
+        drop-shadow-xl"
+      >
+        <p
+          data-testid={ `customer_products__element-card-title-${id}` }
+          className=" text-xl"
+        >
           { name }
         </p>
         <button
-          className="product-card-rm-item"
+          className="text-white bg-black w-6 font-bold rounded-l hover:bg-grey"
           type="button"
           data-testid={ `customer_products__button-card-rm-item-${id}` }
           disabled={ qty === 0 }
@@ -67,14 +86,15 @@ function ProductCard({ product }) {
           -
         </button>
         <input
-          type="number"
-          className="product-card-qty"
+          type="text"
+          inputMode="numeric"
+          className="w-10 mt-2 text-center border-0 focus:outline-none bg-white"
           data-testid={ `customer_products__input-card-quantity-${id}` }
           value={ qty }
           onChange={ handleQtyChange }
         />
         <button
-          className="product-card-add-item"
+          className="text-white bg-black w-6 font-bold rounded-r hover:bg-grey"
           type="button"
           data-testid={ `customer_products__button-card-add-item-${id}` }
           onClick={ increment }
