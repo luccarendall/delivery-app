@@ -142,7 +142,8 @@ function Management() {
             value={ role }
             className={ classInput }
           >
-            <option defaultValue="customer" value="customer">Cliente</option>
+            <option disabled selected value="">Selecione</option>
+            <option value="customer">Cliente</option>
             <option value="seller">Vendedor</option>
             <option value="administrator">Administrador</option>
           </select>
