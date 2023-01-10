@@ -86,7 +86,7 @@ export default function Checkout() {
   };
 
   return (
-    <>
+    <div>
       <NavBar />
       <main className={ centralizarDiv }>
         <div>
@@ -181,7 +181,8 @@ export default function Checkout() {
         >
           Finalizar pedido
         </button>
+      </div>
       <Footer />
-    </>
+    </div>
   );
 }
