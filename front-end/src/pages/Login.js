@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom';
 import useLocalStorage from '../hooks/useLocalStorage';
 import requestApi from '../utils/RequestAPI';
 import Footer from '../components/Footer/Footer';
-import logo from '../images/logo-maior.png';
+import logo from '../images/logo.png';
 
 function Login() {
   const [email, setEmail] = useState('');
