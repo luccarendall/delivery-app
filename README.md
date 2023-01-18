@@ -32,6 +32,6 @@ Acesse o app pelo link:
 > Rodar o Docker Compose `docker-compose up -d`  
 > Rodar a API utilizando o Nodemon `npm run dev`
 4) Após isso, abra um terminal no front end e dentro dele:
-> Entre na pasta do projeto e execute `npm start`
+> Execute `npm start`
 6) Pronto, projeto rodando em: `http://localhost:3000/`
 
