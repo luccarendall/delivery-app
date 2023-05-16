@@ -1,19 +1,44 @@
-## [Drinks Delivery](https://www.linkedin.com/in/lucca-rendall/)
-Este foi um projeto muito massa que tive a oportunidade de desenvolver durante o módulo de Back end na Trybe.
-
-O objetivo era usar todo o nosso conhecimento para desenvolver um app de delivery para uma distribuidora de bebidas, utilizando fluxos diferentes para clientes, vendedores e uma pessoa administradora.
+## [Delivery App](https://www.linkedin.com/in/lucca-rendall/)
+Durante o módulo de Back end na Trybe, tive a oportunidade de desenvolver um projeto incrível: um aplicativo de entrega para restaurantes e clientes que desejam fazer pedidos de bebidas online. O app conta com fluxos distintos para clientes, vendedores e administração.
 
 Acesse o app pelo link:
 > adicionar link após deploy
 
-## Bibliotecas / API
-> em construção...
+## Tecnologias utilizadas
+*   Node.js
+*   Express.js
+*   MySQL
+*   Express
+*   React.js
+*   ContextAPI
+*   TailwindCSS
 
-## Fluxo
-> em construção...
+## Executando localmente
+1. Clone o repositório
+	Exemplo usando chave SSH:
+`git clone git@github.com:luccarendall/delivery-app.git`
+2. Instale as dependências do projeto
+ `npm install`
+3. Suba a aplicação utilizando o Docker Compose
+ `docker-compose up -d --build` 
+4. Pronto, projeto rodando em: `http://localhost:3000/`
+
+## Fluxos
+#### Após subir a aplicação temos 3 usuarios cadastrados. Cada um com seu fluxo padrão distinto.
+*   #### Cliente:
+    email: zebirita@email.com    
+    senha: '$#zebirita#$'
+    
+*   #### Vendedor:
+    email: fulana@deliveryapp.com  
+    senha: 'fulana@123'  
+    
+*   #### Admin:
+    email: adm@deliveryapp.com  
+    senha: '--adm2@21!!--'
 
 ## Autores
-<img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" width=15> [Lucca Rendall](https://github.com/LuccaRendall)
+<img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" width=15> [Lucca Leonardo Rendall](https://github.com/LuccaRendall)
 
 <img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" width=15> [Augusto Varandas](https://github.com/augustovarandas)
 
@@ -24,14 +49,4 @@ Acesse o app pelo link:
 <img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" width=15> [Henrique Prim](https://github.com/Henriqueprim)
 
 <img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" width=15> [Luiz Felipe](https://github.com/LuizFelipe406)
-
-## Executar localmente
-1) Clonar o repositório
-2) Instalar dependências com `npm install`
-3) Abrir um terminal integrado ao back end e dentro dele:
-> Rodar o Docker Compose `docker-compose up -d`  
-> Rodar a API utilizando o Nodemon `npm run dev`
-4) Após isso, abra um terminal no front end e dentro dele:
-> Execute `npm start`
-6) Pronto, projeto rodando em: `http://localhost:3000/`
 
