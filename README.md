@@ -1,8 +1,5 @@
 ## [Delivery App](https://www.linkedin.com/in/lucca-rendall/)
-Durante o módulo de Back end na Trybe, tive a oportunidade de desenvolver um projeto incrível: um aplicativo de entrega para restaurantes e clientes que desejam fazer pedidos de bebidas online. O app conta com fluxos distintos para clientes, vendedores e administração.
-
-Acesse o app pelo link:
-> adicionar link após deploy
+Desenvolvemos um aplicativo de entrega personalizado para restaurantes e clientes, onde os usuários têm a comodidade de fazer pedidos de bebidas online. Nossa equipe trabalhou arduamente para criar fluxos de trabalho específicos que atendessem às necessidades de cada um dos envolvidos: clientes, vendedores e equipe de administração. Nosso objetivo principal era proporcionar uma experiência intuitiva e eficiente a todos os participantes do processo de entrega.
 
 ## Tecnologias utilizadas
 *   Node.js
