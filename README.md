@@ -1,7 +1,7 @@
 ## [Delivery App](https://www.linkedin.com/in/lucca-rendall/)
-Desenvolvemos um aplicativo de entrega personalizado para restaurantes e clientes, onde os usuários têm a comodidade de fazer pedidos de bebidas online. Nossa equipe trabalhou arduamente para criar fluxos de trabalho específicos que atendessem às necessidades de cada um dos envolvidos: clientes, vendedores e equipe de administração. Nosso objetivo principal era proporcionar uma experiência intuitiva e eficiente a todos os participantes do processo de entrega.
+We have developed a customized delivery app for restaurants and customers, providing users with the convenience of placing beverage orders online. Our software development team worked diligently to create specific workflows that met the needs of each involved group: customers, sellers, and the administrative team. Our primary goal was to offer an intuitive and efficient experience to all participants in the delivery process, in line with our commitment to software excellence.
 
-## Tecnologias utilizadas
+## Technologies Used
 *   Node.js
 *   Express.js
 *   MySQL
@@ -10,31 +10,37 @@ Desenvolvemos um aplicativo de entrega personalizado para restaurantes e cliente
 *   ContextAPI
 *   TailwindCSS
 
-## Executando localmente
-1. Clone o repositório
-	Exemplo usando chave SSH:
-`git clone git@github.com:luccarendall/delivery-app.git`
-2. Instale as dependências do projeto
- `npm install`
-3. Suba a aplicação utilizando o Docker Compose
- `docker-compose up -d --build` 
-4. Pronto, projeto rodando em: `http://localhost:3000/`
+## Running Locally
+1. Clone the repository
+   Example using SSH key:
+   ```
+   git clone git@github.com:luccarendall/delivery-app.git
+   ```
+2. Install project dependencies
+   ```
+   npm install
+   ```
+3. Launch the application using Docker Compose
+   ```
+   docker-compose up -d --build
+   ```
+4. Your project is now running at: `http://localhost:3000/`
 
-## Fluxos
-#### Após subir a aplicação temos 3 usuarios cadastrados. Cada um com seu fluxo padrão distinto.
-*   #### Cliente:
-    email: zebirita@email.com    
-    senha: '$#zebirita#$'
+## Workflows
+#### After launching the application, we have 3 registered users, each with their distinct default workflow.
+*   #### Customer:
+    Email: zebirita@email.com    
+    Password: '$#zebirita#$'
     
-*   #### Vendedor:
-    email: fulana@deliveryapp.com  
-    senha: 'fulana@123'  
+*   #### Seller:
+    Email: fulana@deliveryapp.com  
+    Password: 'fulana@123'  
     
 *   #### Admin:
-    email: adm@deliveryapp.com  
-    senha: '--adm2@21!!--'
+    Email: adm@deliveryapp.com  
+    Password: '--adm2@21!!--'
 
-## Autores
+## Authors
 <img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" width=15> [Lucca Leonardo Rendall](https://github.com/LuccaRendall)
 
 <img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" width=15> [Augusto Varandas](https://github.com/augustovarandas)
@@ -46,4 +52,3 @@ Desenvolvemos um aplicativo de entrega personalizado para restaurantes e cliente
 <img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" width=15> [Henrique Prim](https://github.com/Henriqueprim)
 
 <img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" width=15> [Luiz Felipe](https://github.com/LuizFelipe406)
-
